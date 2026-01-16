@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Xcode
+*.pbproj.user
+*.mode1v3
+*.pbxuser
+*.perspectivev3
+*.xcscmblueprint
+*.xccheckout
+xcuserdata/
+DerivedData/
+*.xcuserstate

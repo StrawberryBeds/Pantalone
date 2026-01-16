@@ -7,55 +7,64 @@
 
 import SwiftUI
 import SwiftData
+import GameKit
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    
+    @StateObject var gameLogic = GameLogic()
+    @State private var isPresenting = false
+    @State private var selectedCardSet: CardSet?
+    
+    let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        NavigationView {
+            VStack {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(gameLogic.cards) { card in
+                        let isFlipped = gameLogic.flippedIndices.contains(card.id) || gameLogic.solvedIndices.contains(card.id)
+                        let cardImage = isFlipped ? card.image : "card_back_bird"
+
+                        Image(cardImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .onTapGesture {
+                                gameLogic.handleCardClick(card.id)
+                            }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .padding()
+
+                HStack {
+                    Text("Turns: \(gameLogic.turns) Matches: \(gameLogic.matches)")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+//                Button("Submit Score") {
+//                    let gameCenterView = GameCenterView(gameLogic: gameLogic)
+//                    gameCenterView.submitScore()
+//                }
             }
+            .onAppear(perform: gameLogic.handleReset)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Menu") {
+                        isPresenting.toggle()
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("New Game", action: gameLogic.handleReset)
+                }
             }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            .sheet(isPresented: $isPresenting) {
+                MenuView(isPresenting: $isPresenting, selectedCardSet: $selectedCardSet, gameLogic: gameLogic)
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }

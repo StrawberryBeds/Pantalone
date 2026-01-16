@@ -1,0 +1,35 @@
+{
+  "meta" : {
+    "version" : "2024-11-15"
+  },
+  "resources" : {
+    "leaderboardLocalizations" : {
+      "com.pantalone.lb.emojis" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "turns",
+          "formatterSuffixSingular" : "turn",
+          "locale" : "en-CA",
+          "localID" : "com.pantalone.lb.emojis-en-CA",
+          "name" : "Emojis"
+        }
+      ]
+    },
+    "leaderboards" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Emojis",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.lb.emojis",
+        "visibility" : "SHOW_FOR_ALL"
+      }
+    ]
+  }
+}

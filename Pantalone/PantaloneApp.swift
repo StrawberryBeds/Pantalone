@@ -7,26 +7,18 @@
 
 import SwiftUI
 import SwiftData
+import GameKit
 
 @main
 struct PantaloneApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    
+    @ObservedObject var gameLogic = GameLogic()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear(perform: gameLogic.authenticateUser)
         }
-        .modelContainer(sharedModelContainer)
     }
+
 }
