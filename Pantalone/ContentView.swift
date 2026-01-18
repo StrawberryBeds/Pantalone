@@ -12,8 +12,11 @@ import GameKit
 struct ContentView: View {
     
     @StateObject var gameLogic = GameLogic()
-    @State private var isPresenting = false
+//    @State private var isPresenting = false
     @State private var selectedCardSet: CardSet?
+    
+    @State private var isGameCenterPresented: Bool = false
+
     
     let columns = [
         GridItem(.flexible(), spacing: 10),
@@ -23,7 +26,7 @@ struct ContentView: View {
     ]
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(gameLogic.cards) { card in
@@ -34,6 +37,7 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80, height: 80)
+                            .cornerRadius(8)
                             .onTapGesture {
                                 gameLogic.handleCardClick(card.id)
                             }
@@ -44,27 +48,29 @@ struct ContentView: View {
                 HStack {
                     Text("Turns: \(gameLogic.turns) Matches: \(gameLogic.matches)")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.gray)
                 }
-//                Button("Submit Score") {
-//                    let gameCenterView = GameCenterView(gameLogic: gameLogic)
-//                    gameCenterView.submitScore()
-//                }
             }
             .onAppear(perform: gameLogic.handleReset)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Menu") {
-                        isPresenting.toggle()
+                    NavigationLink(destination: MenuView(selectedCardSet: $selectedCardSet, gameLogic: gameLogic)) {
+                        Label("", systemImage: "house.fill")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("New Game", action: gameLogic.handleReset)
+                    Button(action: { isGameCenterPresented = true }) {
+                        Label("", systemImage: "trophy.fill")
+                    }
                 }
             }
-            .sheet(isPresented: $isPresenting) {
-                MenuView(isPresenting: $isPresenting, selectedCardSet: $selectedCardSet, gameLogic: gameLogic)
+            .sheet(isPresented: $isGameCenterPresented) {
+                GameCenterView(gameLogic: gameLogic)
             }
+//            .sheet(isPresented: $isPresenting) {
+//                MenuView(selectedCardSet: $selectedCardSet, gameLogic: gameLogic)
+//            }
         }
     }
 }
+

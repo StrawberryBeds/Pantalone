@@ -11,11 +11,11 @@ import GameKit
 
 struct MenuView: View {
     let cardSets = CardDataSource.cardSets
-    @Binding var isPresenting: Bool
+//    @Binding var isPresenting: Bool
     @Binding var selectedCardSet: CardSet?
     @ObservedObject var gameLogic: GameLogic
     
-    @State private var isGameCenterPresented: Bool = false
+//    @State private var isGameCenterPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -27,32 +27,32 @@ struct MenuView: View {
                         selectedCardSet = cardSet
                         gameLogic.selectedCardSet = cardSet
                         gameLogic.handleReset()
-                        isPresenting.toggle()
+//                        isPresenting.toggle()
                     }
             }
             
-            Text("Game Centre")
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
+//            Text("Game Centre")
+//                .font(.headline)
+//                .foregroundColor(.white)
+//                .padding()
+//            
+//            Button("Show Game Center") {
+//                isGameCenterPresented = true
+//            }
             
-            Button("Show Game Center") {
-                isGameCenterPresented = true
-            }
-            
-            Text("Tap to Dismiss")
-                .padding()
-                .onTapGesture {
-                    isPresenting.toggle()
-                }
+//            Text("Tap to Dismiss")
+//                .padding()
+//                .onTapGesture {
+//                    isPresenting.toggle()
+//                }
         }
         .foregroundColor(.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.blue)
         .ignoresSafeArea(edges: .all)
         
-        .sheet(isPresented: $isGameCenterPresented) {
-            GameCenterView(gameLogic: gameLogic)
-        }
+//        .sheet(isPresented: $isGameCenterPresented) {
+//            GameCenterView(gameLogic: gameLogic)
+//        }
     }
 }
