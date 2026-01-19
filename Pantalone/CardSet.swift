@@ -12,6 +12,7 @@ import SwiftData
 struct CardSet: Identifiable, Equatable, Hashable {
     let id: Int
     let setName: String
+    let setImage: String
     let cardImages: [String]
     let leaderboardIDs: [String]
 }

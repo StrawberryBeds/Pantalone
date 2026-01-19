@@ -4,6 +4,16 @@
   },
   "resources" : {
     "leaderboardLocalizations" : {
+      "com.pantalone.lb.birds" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "turns",
+          "formatterSuffixSingular" : "turn",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.lb.birds-en-GB",
+          "name" : "Birds"
+        }
+      ],
       "com.pantalone.lb.emojis" : [
         {
           "formatterOverride" : "INTEGER",
@@ -28,6 +38,20 @@
         "scoreSortType" : "ASC",
         "submissionType" : "BEST_SCORE",
         "vendorIdentifier" : "com.pantalone.lb.emojis",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Birds",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.lb.birds",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]
