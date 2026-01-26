@@ -14,9 +14,10 @@ struct GameCenterView: UIViewControllerRepresentable {
     var gameLogic: GameLogic
 
     func makeUIViewController(context: Context) -> GKGameCenterViewController {
-        let viewController = GKGameCenterViewController(state: .dashboard)
-        viewController.gameCenterDelegate = context.coordinator
-        return viewController
+        let gcViewController = GKGameCenterViewController()
+        gcViewController.gameCenterDelegate = context.coordinator
+        gcViewController.viewState = .leaderboards
+        return gcViewController
     }
 
     func updateUIViewController(_ uiViewController: GKGameCenterViewController, context: Context) {
@@ -59,3 +60,5 @@ struct GameCenterView: UIViewControllerRepresentable {
         }
     }
 }
+
+

@@ -25,44 +25,52 @@ struct MenuView: View {
     ]
     
     var body: some View {
-        VStack {
+
             NavigationStack {
-                LazyVGrid(columns: columns, spacing: 5) {
-                    ForEach(cardSets) { cardSet in
-                        NavigationLink(
-                            tag: cardSet,
-                            selection: $navigationSelection,
-                            destination: {
-                                ContentView(gameLogic: gameLogic, selectedCardSet: navigationSelection)
-                            },
-                            label: {
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(Color.cream)
-                                        .scaledToFit()
-                                        .frame(width: 160, height: 160)
-                                        .cornerRadius(16)
-                                    Image(cardSet.setImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 150, height: 150)
-                                        .cornerRadius(16)
+                VStack {
+                    Button("Show Game Center") {
+                        isGameCenterPresented = true
+                    }
+                    .sheet(isPresented: $isGameCenterPresented) {
+                        GameCenterView(gameLogic: gameLogic)
+                    }
+                
+                    LazyVGrid(columns: columns, spacing: 5) {
+                        ForEach(cardSets) { cardSet in
+                            NavigationLink(
+                                tag: cardSet,
+                                selection: $navigationSelection,
+                                destination: {
+                                    ContentView(gameLogic: gameLogic, selectedCardSet: navigationSelection)
+                                },
+                                label: {
+                                    ZStack {
+                                        Rectangle()
+                                            .foregroundColor(Color.cream)
+                                            .scaledToFit()
+                                            .frame(width: 160, height: 160)
+                                            .cornerRadius(16)
+                                        Image(cardSet.setImage)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 150, height: 150)
+                                            .cornerRadius(16)
+                                    }
+                                    .onTapGesture {
+                                        selectedCardSet = cardSet
+                                        gameLogic.selectedCardSet = cardSet
+                                        gameLogic.handleReset()
+                                        navigationSelection = cardSet
+                                    }
                                 }
-                                .onTapGesture {
-                                    selectedCardSet = cardSet
-                                    gameLogic.selectedCardSet = cardSet
-                                    gameLogic.handleReset()
-                                    navigationSelection = cardSet
-                                }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.accentColor)
                 .ignoresSafeArea(edges: .all)
-            }
 
         }
 

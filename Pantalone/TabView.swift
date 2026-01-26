@@ -21,17 +21,23 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-//            ContentView(gameLogic: gameLogic)
-//                .tabItem {
-//                    Label("Play", systemImage: "gamecontroller.fill")
-//                }
-            GameCenterView(gameLogic: gameLogic)
+            Color.accentColor
+                .onAppear {
+                    isGameCenterPresented = true
+                }
+                .overlay(
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                )
                 .tabItem {
                     Label("GameCentre", systemImage: "trophy.fill")
                 }
-        }
-    }
-}
+                    }
+                    .sheet(isPresented: $isGameCenterPresented) {
+                        GameCenterView(gameLogic: gameLogic)
+                    }
+                }
+            }
 
 #Preview {
     MainTabView()
