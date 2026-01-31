@@ -5,37 +5,17 @@
 //  Created by Samuel Wood on 2026-01-16.
 //
 
-
 import SwiftUI
 import GameKit
 
-struct GameCenterView: UIViewControllerRepresentable {
-    // Remove the local var, use the passed instance
+struct GameCenterView: View {
     var gameLogic: GameLogic
 
-    func makeUIViewController(context: Context) -> GKGameCenterViewController {
-        let gcViewController = GKGameCenterViewController()
-        gcViewController.gameCenterDelegate = context.coordinator
-        gcViewController.viewState = .leaderboards
-        return gcViewController
-    }
-
-    func updateUIViewController(_ uiViewController: GKGameCenterViewController, context: Context) {
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, GKGameCenterControllerDelegate {
-        var parent: GameCenterView
-
-        init(_ parent: GameCenterView) {
-            self.parent = parent
-        }
-
-        func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-            gameCenterViewController.dismiss(animated: true, completion: nil)
+    var body: some View {
+        if let leaderboardID = gameLogic.selectedCardSet?.leaderboardIDs.first {
+            CustomLeaderboardView(gameLogic: gameLogic)
+        } else {
+            Text("No leaderboard available.")
         }
     }
 
@@ -60,5 +40,4 @@ struct GameCenterView: UIViewControllerRepresentable {
         }
     }
 }
-
 

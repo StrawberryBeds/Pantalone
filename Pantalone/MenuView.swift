@@ -13,7 +13,7 @@ struct MenuView: View {
     let cardSets = CardDataSource.cardSets
     @State private var selectedCardSet: CardSet? = nil
     @State private var navigationSelection: CardSet? = nil
-    @State private var isGameCenterPresented: Bool = false
+//    @State private var isGameCenterPresented: Bool = false
 
     @ObservedObject var gameLogic: GameLogic
     
@@ -28,12 +28,21 @@ struct MenuView: View {
 
             NavigationStack {
                 VStack {
-                    Button("Show Game Center") {
-                        isGameCenterPresented = true
-                    }
-                    .sheet(isPresented: $isGameCenterPresented) {
-                        GameCenterView(gameLogic: gameLogic)
-                    }
+//                    Button("Show Game Center") {
+//                        isGameCenterPresented = true
+//                    }
+//                    .sheet(isPresented: $isGameCenterPresented) {
+//                        NavigationStack {
+//                            GameCenterView(gameLogic: gameLogic)
+//                                .toolbar {
+//                                    ToolbarItem(placement: .cancellationAction) {
+//                                        Button("Close") {
+//                                            isGameCenterPresented = false
+//                                        }
+//                                    }
+//                                }
+//                        }
+//                    }
                 
                     LazyVGrid(columns: columns, spacing: 5) {
                         ForEach(cardSets) { cardSet in

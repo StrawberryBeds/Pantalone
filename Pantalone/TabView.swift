@@ -12,32 +12,20 @@ struct MainTabView: View {
     @StateObject var gameLogic = GameLogic()
 //    @State private var isPresenting = false
     @State private var selectedCardSet: CardSet?
-    
-    @State private var isGameCenterPresented: Bool = false
-    
+
     var body: some View {
         TabView {
             MenuView(gameLogic: gameLogic)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-            Color.accentColor
-                .onAppear {
-                    isGameCenterPresented = true
-                }
-                .overlay(
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                )
+            CustomLeaderboardView(gameLogic: gameLogic)
                 .tabItem {
-                    Label("GameCentre", systemImage: "trophy.fill")
+                    Label("Leaderboard", systemImage: "list.number")
                 }
-                    }
-                    .sheet(isPresented: $isGameCenterPresented) {
-                        GameCenterView(gameLogic: gameLogic)
-                    }
-                }
-            }
+        }
+    }
+}
 
 #Preview {
     MainTabView()

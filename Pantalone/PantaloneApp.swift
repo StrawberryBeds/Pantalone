@@ -16,7 +16,7 @@ struct PantaloneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            MainTabView(gameLogic: gameLogic)
             .onAppear(perform: gameLogic.authenticateUser)
         }
     }
