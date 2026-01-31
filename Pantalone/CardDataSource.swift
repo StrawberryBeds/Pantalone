@@ -13,14 +13,14 @@ struct CardDataSource {
             setName: "Emojis",
             setImage: "smiley_1F60A",
             cardImages: ["balloon_1F388", "cake_1F382", "cat_1F431", "dog_1F436", "dragon_1F409", "octopus_1F419", "pheonix_1F426-200D-1F525", "rofl_1F923", "smiley_1F60A", "unicorn_1F984"],
-            leaderboardIDs: ["com.pantalone.lb.emojis"]
+            leaderboardIDs: ["com.pantalone.match.lb.emojis"]
         ),
         CardSet(
             id: 2,
             setName: "Birds",
             setImage: "kingfisher",
             cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
-            leaderboardIDs: ["com.pantalone.lb.birds"]
+            leaderboardIDs: ["com.pantalone.match.lb.birds"]
         )
     ]
 }

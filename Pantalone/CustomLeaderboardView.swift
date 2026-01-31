@@ -20,11 +20,20 @@ struct CustomLeaderboardView: View {
     @ObservedObject var gameLogic: GameLogic
     
     @State private var leaderboardEntries: [LeaderboardEntry] = []
+    @State private var leaderboardTitle: String = ""
     @State private var isLoading = false
     @State private var loadError: String?
     
     var body: some View {
         VStack {
+            // Display leaderboard title
+            if !leaderboardTitle.isEmpty {
+                Text(leaderboardTitle)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding()
+            }
+            
             if isLoading {
                 ProgressView()
                     .padding()
@@ -43,21 +52,21 @@ struct CustomLeaderboardView: View {
                 }
             }
             
-            Button("View Full Leaderboards in Game Center") {
-                isGameCenterPresented = true
-            }
-            .sheet(isPresented: $isGameCenterPresented) {
-                NavigationStack {
-                    GameCenterView(gameLogic: gameLogic)
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Close") {
-                                    isGameCenterPresented = false
-                                }
-                            }
-                        }
-                }
-            }
+//            Button("View Full Leaderboards in Game Center") {
+//                isGameCenterPresented = true
+//            }
+//            .sheet(isPresented: $isGameCenterPresented) {
+//                NavigationStack {
+//                    GameCenterView(gameLogic: gameLogic)
+//                        .toolbar {
+//                            ToolbarItem(placement: .cancellationAction) {
+//                                Button("Close") {
+//                                    isGameCenterPresented = false
+//                                }
+//                            }
+//                        }
+//                }
+//            }
         }
         .onAppear {
             if leaderboardEntries.isEmpty {
@@ -74,34 +83,49 @@ struct CustomLeaderboardView: View {
         isLoading = true
         loadError = nil
         leaderboardEntries = []
-        Task {
-            do {
-                let leaderboards = try await GKLeaderboard.loadLeaderboards()
-                guard let leaderboard = leaderboards.first(where: { $0.baseLeaderboardID == leaderboardID || $0.identifier == leaderboardID }) else {
-                    await MainActor.run {
-                        isLoading = false
-                        loadError = "Leaderboard not found."
-                    }
-                    return
+        leaderboardTitle = ""
+        
+        // Use the non-deprecated method
+        GKLeaderboard.loadLeaderboards(IDs: [leaderboardID]) { [self] (leaderboards, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.loadError = error.localizedDescription
                 }
-                let (localPlayerEntry, entries, _) = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10))
-                await MainActor.run {
-                    isLoading = false
-                    if !entries.isEmpty {
-                        leaderboardEntries = entries.map {
+                return
+            }
+            
+            guard let leaderboard = leaderboards?.first else {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.loadError = "Leaderboard not found."
+                }
+                return
+            }
+            
+            // Capture the leaderboard title
+            let title = leaderboard.title ?? "Leaderboard"
+            
+            // Load entries for the leaderboard
+            leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (localPlayerEntry, entries, totalPlayerCount, error) in
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.leaderboardTitle = title
+                    
+                    if let error = error {
+                        self.loadError = error.localizedDescription
+                        return
+                    }
+                    
+                    if let entries = entries, !entries.isEmpty {
+                        self.leaderboardEntries = entries.map {
                             LeaderboardEntry(playerName: $0.player.displayName, score: Int($0.score))
                         }
                     } else {
-                        loadError = "No scores available."
+                        self.loadError = "No scores available."
                     }
-                }
-            } catch {
-                await MainActor.run {
-                    isLoading = false
-                    loadError = error.localizedDescription
                 }
             }
         }
     }
 }
-

@@ -4,37 +4,37 @@
   },
   "resources" : {
     "leaderboardImages" : {
-      "com.pantalone.lb.birds-en-GB" : [
+      "com.pantalone.match.lb.birds-en-GB" : [
         {
-          "localID" : "com.pantalone.lb.birds-en-GB",
-          "url" : "en-GB\/LeaderboardImage-com.pantalone.lb.birds-en-GB.png"
+          "localID" : "com.pantalone.match.lb.birds-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.match.lb.birds-en-GB.png"
         }
       ],
-      "com.pantalone.lb.emojis-en-CA" : [
+      "com.pantalone.match.lb.emojis-en-GB" : [
         {
-          "localID" : "com.pantalone.lb.emojis-en-CA",
-          "url" : "en-CA\/LeaderboardImage-com.pantalone.lb.emojis-en-CA.png"
+          "localID" : "com.pantalone.match.lb.emojis-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.match.lb.emojis-en-GB.png"
         }
       ]
     },
     "leaderboardLocalizations" : {
-      "com.pantalone.lb.birds" : [
+      "com.pantalone.match.lb.birds" : [
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "turns",
           "formatterSuffixSingular" : "turn",
           "locale" : "en-GB",
-          "localID" : "com.pantalone.lb.birds-en-GB",
+          "localID" : "com.pantalone.match.lb.birds-en-GB",
           "name" : "Birds"
         }
       ],
-      "com.pantalone.lb.emojis" : [
+      "com.pantalone.match.lb.emojis" : [
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "turns",
           "formatterSuffixSingular" : "turn",
-          "locale" : "en-CA",
-          "localID" : "com.pantalone.lb.emojis-en-CA",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.match.lb.emojis-en-GB",
           "name" : "Emojis"
         }
       ]
@@ -46,12 +46,12 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "referenceName" : "Emojis",
+        "referenceName" : "MatchEmojis",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
-        "submissionType" : "BEST_SCORE",
-        "vendorIdentifier" : "com.pantalone.lb.emojis",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.match.lb.emojis",
         "visibility" : "SHOW_FOR_ALL"
       },
       {
@@ -60,12 +60,12 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "referenceName" : "Birds",
+        "referenceName" : "MatchBirds",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
-        "submissionType" : "BEST_SCORE",
-        "vendorIdentifier" : "com.pantalone.lb.birds",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.match.lb.birds",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]
