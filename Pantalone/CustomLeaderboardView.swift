@@ -8,124 +8,139 @@
 import SwiftUI
 import GameKit
 
-struct LeaderboardEntry: Identifiable {
-    let id = UUID()
-    let playerName: String
-    let score: Int
+struct LeaderboardInfo: Identifiable {
+    let id: String  // leaderboard ID
+    let name: String
+    let iconName: String  // SF Symbol name for icon
 }
 
 struct CustomLeaderboardView: View {
-    
-    @State private var isGameCenterPresented: Bool = false
     @ObservedObject var gameLogic: GameLogic
     
-    @State private var leaderboardEntries: [LeaderboardEntry] = []
-    @State private var leaderboardTitle: String = ""
+    @State private var availableLeaderboards: [LeaderboardInfo] = []
     @State private var isLoading = false
     @State private var loadError: String?
     
     var body: some View {
-        VStack {
-            // Display leaderboard title
-            if !leaderboardTitle.isEmpty {
-                Text(leaderboardTitle)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding()
-            }
-            
-            if isLoading {
-                ProgressView()
-                    .padding()
-            } else if let error = loadError {
-                Text(error)
-                    .foregroundColor(.red)
-                    .padding()
-            } else {
-                List(leaderboardEntries) { entry in
-                    HStack {
-                        Text(entry.playerName)
-                        Spacer()
-                        Text("\(entry.score)")
+        NavigationStack {
+            VStack {
+                if isLoading {
+                    ProgressView("Loading leaderboards...")
+                        .padding()
+                } else if let error = loadError {
+                    VStack(spacing: 16) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.largeTitle)
+                            .foregroundColor(.orange)
+                        Text(error)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                        Button("Retry") {
+                            loadAvailableLeaderboards()
+                        }
+                        .buttonStyle(.bordered)
                     }
-                    .padding(.vertical, 4)
+                    .padding()
+                } else if availableLeaderboards.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "list.bullet.clipboard")
+                            .font(.largeTitle)
+                            .foregroundColor(.secondary)
+                        Text("No leaderboards available")
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                } else {
+                    List(availableLeaderboards) { leaderboard in
+                        NavigationLink(destination: LeaderboardDetailView(
+                            leaderboardID: leaderboard.id,
+                            leaderboardName: leaderboard.name
+                        )) {
+                            HStack {
+                                Image(systemName: leaderboard.iconName)
+                                    .font(.title2)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 40)
+                                
+                                Text(leaderboard.name)
+                                    .font(.headline)
+                            }
+                            .padding(.vertical, 8)
+                        }
+                    }
+                    .listStyle(.insetGrouped)
                 }
             }
-            
-//            Button("View Full Leaderboards in Game Center") {
-//                isGameCenterPresented = true
-//            }
-//            .sheet(isPresented: $isGameCenterPresented) {
-//                NavigationStack {
-//                    GameCenterView(gameLogic: gameLogic)
-//                        .toolbar {
-//                            ToolbarItem(placement: .cancellationAction) {
-//                                Button("Close") {
-//                                    isGameCenterPresented = false
-//                                }
-//                            }
-//                        }
-//                }
-//            }
-        }
-        .onAppear {
-            if leaderboardEntries.isEmpty {
-                loadLeaderboard()
+            .navigationTitle("Leaderboards")
+            .onAppear {
+                if availableLeaderboards.isEmpty {
+                    loadAvailableLeaderboards()
+                }
             }
         }
     }
     
-    private func loadLeaderboard() {
-        guard let leaderboardID = gameLogic.selectedCardSet?.leaderboardIDs.first else {
-            loadError = "No leaderboard available."
-            return
-        }
+    private func loadAvailableLeaderboards() {
         isLoading = true
         loadError = nil
-        leaderboardEntries = []
-        leaderboardTitle = ""
+        availableLeaderboards = []
         
-        // Use the non-deprecated method
-        GKLeaderboard.loadLeaderboards(IDs: [leaderboardID]) { [self] (leaderboards, error) in
-            if let error = error {
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    self.loadError = error.localizedDescription
-                }
-                return
+        // Get all unique leaderboard IDs from card sets (static property)
+        let allLeaderboardIDs = CardDataSource.cardSets.flatMap { $0.leaderboardIDs }
+        let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs))
+        
+        guard !uniqueLeaderboardIDs.isEmpty else {
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.loadError = "No leaderboards configured."
             }
-            
-            guard let leaderboard = leaderboards?.first else {
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    self.loadError = "Leaderboard not found."
+            return
+        }
+        
+        // Load all leaderboards
+        GKLeaderboard.loadLeaderboards(IDs: uniqueLeaderboardIDs) { (leaderboards, error) in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                
+                if let error = error {
+                    self.loadError = "Failed to load leaderboards: \(error.localizedDescription)"
+                    return
                 }
-                return
-            }
-            
-            // Capture the leaderboard title
-            let title = leaderboard.title ?? "Leaderboard"
-            
-            // Load entries for the leaderboard
-            leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (localPlayerEntry, entries, totalPlayerCount, error) in
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    self.leaderboardTitle = title
-                    
-                    if let error = error {
-                        self.loadError = error.localizedDescription
-                        return
-                    }
-                    
-                    if let entries = entries, !entries.isEmpty {
-                        self.leaderboardEntries = entries.map {
-                            LeaderboardEntry(playerName: $0.player.displayName, score: Int($0.score))
-                        }
-                    } else {
-                        self.loadError = "No scores available."
-                    }
+                
+                guard let leaderboards = leaderboards, !leaderboards.isEmpty else {
+                    self.loadError = "No leaderboards found."
+                    return
                 }
+                
+                // Map leaderboards to our display model
+                self.availableLeaderboards = leaderboards.map { leaderboard in
+                    LeaderboardInfo(
+                        id: leaderboard.baseLeaderboardID,
+                        name: leaderboard.title ?? "Leaderboard",
+                        iconName: self.iconForLeaderboard(leaderboard.title ?? "")
+                    )
+                }
+                .sorted { $0.name < $1.name }  // Sort alphabetically
             }
+        }
+    }
+    
+    // Helper function to assign icons based on leaderboard name
+    private func iconForLeaderboard(_ name: String) -> String {
+        let lowercasedName = name.lowercased()
+        
+        if lowercasedName.contains("emoji") {
+            return "face.smiling"
+        } else if lowercasedName.contains("bird") {
+            return "bird"
+        } else if lowercasedName.contains("animal") {
+            return "pawprint"
+        } else if lowercasedName.contains("flag") {
+            return "flag"
+        } else if lowercasedName.contains("food") {
+            return "fork.knife"
+        } else {
+            return "trophy"
         }
     }
 }
