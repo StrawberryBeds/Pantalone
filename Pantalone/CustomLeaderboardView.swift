@@ -16,6 +16,7 @@ struct LeaderboardInfo: Identifiable {
 
 struct CustomLeaderboardView: View {
     @ObservedObject var gameLogic: GameLogic
+    let cardSets = CardDataSource.cardSets
     
     @State private var availableLeaderboards: [LeaderboardInfo] = []
     @State private var isLoading = false
