@@ -43,6 +43,8 @@ struct MenuView: View {
 //                                }
 //                        }
 //                    }
+                    Text("Choose a set to match!")
+                        .font(Font.custom("FrederickatheGreat-Regular", size: 32))
                 
                     LazyVGrid(columns: columns, spacing: 5) {
                         ForEach(cardSets) { cardSet in
