@@ -11,6 +11,7 @@ import GameKit
 
 struct MenuView: View {
     let cardSets = CardDataSource.cardSets
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     @State private var selectedCardSet: CardSet? = nil
     @State private var navigationSelection: CardSet? = nil
 //    @State private var isGameCenterPresented: Bool = false
@@ -43,6 +44,8 @@ struct MenuView: View {
 //                                }
 //                        }
 //                    }
+                    Text("Choose a set to match!")
+                        .font(customTitle)
                 
                     LazyVGrid(columns: columns, spacing: 5) {
                         ForEach(cardSets) { cardSet in
@@ -76,17 +79,11 @@ struct MenuView: View {
                         }
                     }
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.accentColor)
                 .ignoresSafeArea(edges: .all)
-
         }
-
     }
-}
-
-#Preview {
-    MainTabView()
 }
 
