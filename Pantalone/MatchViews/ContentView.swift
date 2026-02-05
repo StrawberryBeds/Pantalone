@@ -17,6 +17,7 @@ struct ContentView: View {
 //    let paperBag = Color("PaperBag")
     let cream = Color("Cream")
     let offWhite = Color("OffWhite")
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     
     let columns = [
         GridItem(.flexible(), spacing: 10),
@@ -30,6 +31,12 @@ struct ContentView: View {
             Color.cream
                 .ignoresSafeArea()
             VStack {
+                HStack {
+                    Text("Turns: \(gameLogic.turns) Matches: \(gameLogic.matches)")
+                        .font(customTitle)
+                        .foregroundColor(.black)
+                }
+                
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(gameLogic.cards) { card in
                         let isFlipped = gameLogic.flippedIndices.contains(card.id) || gameLogic.solvedIndices.contains(card.id)
@@ -55,11 +62,7 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                HStack {
-                    Text("Turns: \(gameLogic.turns) Matches: \(gameLogic.matches)")
-                        .font(.headline)
-                        .foregroundColor(.red)
-                }
+
             }
         }
     }

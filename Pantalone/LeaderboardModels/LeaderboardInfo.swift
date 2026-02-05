@@ -1,0 +1,22 @@
+//
+//  LeaderboardInfo.swift
+//  Pantalone
+//
+//  Created by Samuel Wood on 2026-02-04.
+//
+
+import SwiftUI
+import SwiftData
+
+struct LeaderboardInfo: Identifiable {
+    let id: String  // leaderboard ID
+    let name: String
+    let iconName: String  // SF Symbol name for icon
+}
+
+struct LeaderboardEntry: Identifiable {
+    let id = UUID()
+    let playerName: String
+    let score: Int
+    let rank: Int
+}

@@ -21,7 +21,7 @@ struct MainTabView: View {
                 }
             CustomLeaderboardView(gameLogic: gameLogic)
                 .tabItem {
-                    Label("Leaderboard", systemImage: "list.number")
+                    Label("Leaderboards", systemImage: "list.number")
                 }
         }
     }

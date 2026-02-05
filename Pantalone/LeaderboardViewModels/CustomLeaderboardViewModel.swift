@@ -1,0 +1,86 @@
+//
+//  CustomLeaderboardViewModel.swift
+//  Pantalone
+//
+//  Created by Samuel Wood on 2026-02-04.
+//
+
+
+import SwiftUI
+import GameKit
+import Combine
+
+class CustomLeaderboardViewModel: ObservableObject {
+    @Published var availableLeaderboards: [LeaderboardInfo] = []
+    @Published var isLoading = false
+    @Published var loadError: String?
+    
+    private let cardSets: [CardSet]
+    
+    init(cardSets: [CardSet]) {
+        self.cardSets = cardSets
+    }
+    
+    func loadAvailableLeaderboards() {
+        isLoading = true
+        loadError = nil
+        availableLeaderboards = []
+        
+        // Get all unique leaderboard IDs from card sets (static property)
+        let allLeaderboardIDs = cardSets.flatMap { $0.leaderboardIDs }
+        let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs))
+        
+        guard !uniqueLeaderboardIDs.isEmpty else {
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.loadError = "No leaderboards configured."
+            }
+            return
+        }
+        
+        // Load all leaderboards
+        GKLeaderboard.loadLeaderboards(IDs: uniqueLeaderboardIDs) { (leaderboards, error) in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                
+                if let error = error {
+                    self.loadError = "Failed to load leaderboards: \(error.localizedDescription)"
+                    return
+                }
+                
+                guard let leaderboards = leaderboards, !leaderboards.isEmpty else {
+                    self.loadError = "No leaderboards found."
+                    return
+                }
+                
+                // Map leaderboards to our display model
+                self.availableLeaderboards = leaderboards.map { leaderboard in
+                    LeaderboardInfo(
+                        id: leaderboard.baseLeaderboardID,
+                        name: leaderboard.title ?? "Leaderboard",
+                        iconName: self.iconForLeaderboard(leaderboard.title ?? "")
+                    )
+                }
+                .sorted { $0.name < $1.name }  // Sort alphabetically
+            }
+        }
+    }
+    
+    private func iconForLeaderboard(_ name: String) -> String {
+        let lowercasedName = name.lowercased()
+        
+        if lowercasedName.contains("emoji") {
+            return "face.smiling"
+        } else if lowercasedName.contains("bird") {
+            return "bird"
+        } else if lowercasedName.contains("animal") {
+            return "pawprint"
+        } else if lowercasedName.contains("flag") {
+            return "flag"
+        } else if lowercasedName.contains("food") {
+            return "fork.knife"
+        } else {
+            return "trophy"
+        }
+    }
+}
