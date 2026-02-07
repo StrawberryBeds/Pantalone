@@ -12,6 +12,7 @@ import Combine
 
 struct MenuView: View {
     @StateObject var viewModel: MenuViewModel
+    @Environment(\.colorScheme) var colorScheme
 
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     
@@ -31,6 +32,7 @@ struct MenuView: View {
             VStack {
                 Text("Choose a set to match!")
                     .font(customTitle)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
             
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(viewModel.cardSets) { cardSet in

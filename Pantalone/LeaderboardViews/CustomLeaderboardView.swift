@@ -81,6 +81,7 @@ struct CustomLeaderboardView: View {
                                     
                                     Text(leaderboard.name)
                                         .font(customHeadline)
+                                        .foregroundColor(.primary)
                                 }
                                 .padding(.vertical, 8)
                             }

@@ -19,4 +19,12 @@ struct LeaderboardEntry: Identifiable {
     let playerName: String
     let score: Int
     let rank: Int
+
+
+    init( playerName: String, score: Int, rank: Int) {
+        self.playerName = playerName
+        self.score = score
+        self.rank = rank
+
+    }
 }
