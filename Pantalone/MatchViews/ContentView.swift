@@ -61,14 +61,8 @@ struct ContentView: View {
                     }
                 }
                 .padding()
-                
-
             }
         }
     }
 }
-
-//#Preview {
-//    ContentView(gameLogic: gameLogic)
-//}
 

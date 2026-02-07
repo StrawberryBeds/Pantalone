@@ -25,6 +25,5 @@ struct LeaderboardEntry: Identifiable {
         self.playerName = playerName
         self.score = score
         self.rank = rank
-
     }
 }

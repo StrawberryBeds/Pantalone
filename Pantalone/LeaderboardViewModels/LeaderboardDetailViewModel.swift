@@ -72,7 +72,6 @@ class LeaderboardDetailViewModel: ObservableObject {
                             )
                         }
                     }
-                    // If empty, the UI will show "No scores yet"
                 }
             }
         }

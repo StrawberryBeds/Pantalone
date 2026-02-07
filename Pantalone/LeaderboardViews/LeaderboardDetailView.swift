@@ -89,7 +89,6 @@ struct LeaderboardDetailView: View {
                 .listStyle(.plain)
             }
         }
-//        .navigationTitle(viewModel.leaderboardTitle.isEmpty ? viewModel.leaderboardName : viewModel.leaderboardTitle)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if viewModel.leaderboardEntries.isEmpty {
