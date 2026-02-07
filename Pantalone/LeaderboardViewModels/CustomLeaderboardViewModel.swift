@@ -55,11 +55,11 @@ class CustomLeaderboardViewModel: ObservableObject {
                 
                 // Map leaderboards to our display model
                 self.availableLeaderboards = leaderboards.map { leaderboard in
-                    LeaderboardInfo(
+                    let matchingSet = self.cardSets.first { $0.leaderboardIDs.contains(leaderboard.baseLeaderboardID) }
+                    return LeaderboardInfo(
                         id: leaderboard.baseLeaderboardID,
                         name: leaderboard.title ?? "Leaderboard",
-                        iconName: self.iconForLeaderboard(leaderboard.title ?? "")
-                    )
+                        setImage: matchingSet?.setImage ?? "card_back_bird")
                 }
                 .sorted { $0.name < $1.name }  // Sort alphabetically
             }
@@ -84,3 +84,4 @@ class CustomLeaderboardViewModel: ObservableObject {
         }
     }
 }
+

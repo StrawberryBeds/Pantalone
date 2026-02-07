@@ -11,7 +11,7 @@ import SwiftData
 struct LeaderboardInfo: Identifiable {
     let id: String  // leaderboard ID
     let name: String
-    let iconName: String  // SF Symbol name for icon
+    let setImage: String
 }
 
 struct LeaderboardEntry: Identifiable {

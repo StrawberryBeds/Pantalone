@@ -64,10 +64,19 @@ struct CustomLeaderboardView: View {
                                 leaderboardName: leaderboard.name
                             )) {
                                 HStack {
-                                    Image(systemName: leaderboard.iconName)
-                                        .font(.title2)
-                                        .foregroundColor(.blue)
-                                        .frame(width: 40)
+                                    // Display Game Center image or fallback to icon
+                                    if !leaderboard.setImage.isEmpty {
+                                        Image(leaderboard.setImage)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                            .cornerRadius(8)
+                                    } else {
+                                        Image(systemName: "trophy")
+                                            .font(.title2)
+                                            .foregroundColor(.blue)
+                                            .frame(width: 40, height: 40)
+                                    }
                                     
                                     Text(leaderboard.name)
                                         .font(customHeadline)
@@ -89,3 +98,4 @@ struct CustomLeaderboardView: View {
         }
     }
 }
+
