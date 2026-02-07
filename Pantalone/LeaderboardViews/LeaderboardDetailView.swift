@@ -11,9 +11,11 @@ import Combine
 
 struct LeaderboardDetailView: View {
     @StateObject var viewModel: LeaderboardDetailViewModel
+    let setImage: String
     
-    init(leaderboardID: String, leaderboardName: String) {
-        _viewModel = StateObject(wrappedValue: LeaderboardDetailViewModel(leaderboardID: leaderboardID, leaderboardName: leaderboardName))
+    init(leaderboardID: String, leaderboardName: String, setImage: String) {
+        _viewModel = StateObject(wrappedValue: LeaderboardDetailViewModel(leaderboardID: leaderboardID, leaderboardName: leaderboardName, setImage: setImage))
+        self.setImage = setImage
     }
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
@@ -47,6 +49,15 @@ struct LeaderboardDetailView: View {
                 }
                 .padding()
             } else {
+                if !setImage.isEmpty {
+                        
+                        Image(setImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(16)
+                }
+                
                 Text("\(viewModel.leaderboardTitle.isEmpty ? viewModel.leaderboardName : viewModel.leaderboardTitle)")
                     .font(customTitle)
                     .padding()

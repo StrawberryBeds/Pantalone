@@ -12,15 +12,17 @@ import Combine
 class LeaderboardDetailViewModel: ObservableObject {
     let leaderboardID: String
     let leaderboardName: String
+    let setImage: String
     
     @Published var leaderboardEntries: [LeaderboardEntry] = []
     @Published var leaderboardTitle: String = ""
     @Published var isLoading = false
     @Published var loadError: String?
     
-    init(leaderboardID: String, leaderboardName: String) {
+    init(leaderboardID: String, leaderboardName: String, setImage: String) {
         self.leaderboardID = leaderboardID
         self.leaderboardName = leaderboardName
+        self.setImage = setImage
     }
     
     func loadLeaderboard() {

@@ -61,7 +61,8 @@ struct CustomLeaderboardView: View {
                         List(viewModel.availableLeaderboards) { leaderboard in
                             NavigationLink(destination: LeaderboardDetailView(
                                 leaderboardID: leaderboard.id,
-                                leaderboardName: leaderboard.name
+                                leaderboardName: leaderboard.name,
+                                setImage: leaderboard.setImage
                             )) {
                                 HStack {
                                     // Display Game Center image or fallback to icon
