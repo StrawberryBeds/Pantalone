@@ -18,7 +18,7 @@ struct CardDataSource {
         CardSet(
             id: 2,
             setName: "Birds",
-            setImage: "kingfisher",
+            setImage: "mallard",
             cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
             leaderboardIDs: ["com.pantalone.match.lb.birds"]
         )
