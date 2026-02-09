@@ -27,3 +27,4 @@ class MenuViewModel: ObservableObject {
         navigationSelection = cardSet
     }
 }
+

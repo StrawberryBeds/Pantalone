@@ -10,7 +10,6 @@ import SwiftUI
 struct GameOverModal: View {
     
     var gameLogic = GameLogic()
-    
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     
     var body: some View {
@@ -24,14 +23,17 @@ struct GameOverModal: View {
             Text("Try to match the cards in less than 16 turns")
             
             
-            HStack {
-                Button("Admire your game!") {
-                    // .dismiss()
-                }
-                .buttonStyle(.bordered)
-                
-                NavigationLink("Play a new game!", destination: MenuView(gameLogic: GameLogic()))
+        HStack {
+            Button("Admire your game!") {
+                gameLogic.gameOverModalIsPresented = false
             }
+            .buttonStyle(.bordered)
+            
+            Button("Play a new game!") {
+                gameLogic.gameOverModalIsPresented = false
+                gameLogic.handleReset()
+            }
+        }
     }
 }
 
