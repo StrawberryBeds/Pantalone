@@ -13,7 +13,7 @@ struct GameOverModal: View {
 //    @ObservedObject var sharingViewModel: SharingViewModel
     
     var gameLogic = GameLogic()
-    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")
 
     
@@ -63,12 +63,9 @@ struct GameOverModal: View {
                     .padding()
                 }
                 
-                Button("Share your score with your friends!", systemImage: "square.and.arrow.up.fill") {
-                    gameLogic.gameOverModalIsPresented = false
-                    
-                    
-                
-                }
+//                Button("Share your score with your friends!", systemImage: "square.and.arrow.up.fill") {
+//                    gameLogic.gameOverModalIsPresented = false
+//                }
             }
         }
     }

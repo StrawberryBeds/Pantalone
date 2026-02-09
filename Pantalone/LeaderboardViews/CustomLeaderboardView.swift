@@ -18,7 +18,7 @@ struct CustomLeaderboardView: View {
         _viewModel = StateObject(wrappedValue: CustomLeaderboardViewModel(cardSets: CardDataSource.cardSets))
     }
     
-    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 24)
     
     var body: some View {
