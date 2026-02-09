@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import GameKit
+import CoreTransferable
 
 struct ContentView: View {
     
@@ -15,58 +16,66 @@ struct ContentView: View {
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
-    let cream = Color("Cream")
-    let offWhite = Color("OffWhite")
-    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
+    @State private var shareImage: UIImage? = nil
+    @State private var showingShareSheet = false
     
-    let columns = [
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10)
-    ]
-
+    let cream = Color("Cream")
+    //    let offWhite = Color("OffWhite")
+    //    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
+    
+    //    let columns = [
+    //        GridItem(.flexible(), spacing: 10),
+    //        GridItem(.flexible(), spacing: 10),
+    //        GridItem(.flexible(), spacing: 10),
+    //        GridItem(.flexible(), spacing: 10)
+    //    ]
+    
     var body: some View {
         ZStack {
             Color.cream
                 .ignoresSafeArea()
             VStack {
-                HStack {
-                    Text("Turns: \(gameLogic.turns) Matches: \(gameLogic.matches)")
-                        .font(customTitle)
-                        .foregroundColor(.black)
-                }
+                GameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)
                 
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(gameLogic.cards) { card in
-                        let isFlipped = gameLogic.flippedIndices.contains(card.id) || gameLogic.solvedIndices.contains(card.id)
-                        let cardImage = isFlipped ? card.image : "card_back_bird"
-                        
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(Color.offWhite)
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .cornerRadius(8)
-                            
-                            Image(cardImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .cornerRadius(8)
-                                .onTapGesture {
-                                    gameLogic.handleCardClick(card.id)
-                                }
-                        }
+                
+                Button("Generate Image and Share") {
+                    // 1. Render the view to a UIImage
+                    print("Content View - Generating Image")
+                    if let uiImage = ImageRenderer(content: GameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)).uiImage {
+                        shareImage = uiImage
+                        print("Image generated successfully. Image is \(String(describing: shareImage?.size))")
+                        showingShareSheet = true
                     }
                 }
-                .padding()
-                .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
-                    GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
+            }
+            .padding()
+            .padding()
+            .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
+                GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
+            }
+            .sheet(isPresented: $showingShareSheet, onDismiss: {
+                shareImage = nil // Clear the image after the sheet is dismissed
+            }) {
+                if let shareImage = shareImage {
+                    // 3. Present the system share sheet with the generated image
+                    ActivityViewController(activityItems: [shareImage])
                 }
             }
         }
     }
+}
+
+// A UIViewControllerRepresentable to wrap UIActivityViewController (the share sheet)
+struct ActivityViewController: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
 

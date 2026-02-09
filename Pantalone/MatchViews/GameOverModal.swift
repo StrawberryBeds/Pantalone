@@ -10,14 +10,12 @@ import SwiftUI
 struct GameOverModal: View {
     
     @ObservedObject var menuViewModel: MenuViewModel
+//    @ObservedObject var sharingViewModel: SharingViewModel
     
     var gameLogic = GameLogic()
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     let cream = Color("Cream")
-    
-    
 
-    
     
     var body: some View {
         
@@ -64,19 +62,13 @@ struct GameOverModal: View {
                     .foregroundStyle(.primary)
                     .padding()
                 }
-//                VStack{
-//                    Image (systemName: "square.and.arrow.up.fill")
-//                        .resizable()
-//                        .foregroundStyle(.accent)
-//                        .frame(width: 32, height: 40)
-//                        .bold()
-//                    
-//                    Text("Share your score with your friends!")
-//                        .bold()
-//                        .padding(10)
-//                }
-//                .onTapGesture(gameLogic.gameOverModalIsPresented = false)
-                // Add logic to capture ContentView and display shareImage: UIImage?
+                
+                Button("Share your score with your friends!", systemImage: "square.and.arrow.up.fill") {
+                    gameLogic.gameOverModalIsPresented = false
+                    
+                    
+                
+                }
             }
         }
     }
