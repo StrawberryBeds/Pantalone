@@ -40,7 +40,7 @@ struct MenuView: View {
                             tag: cardSet,
                             selection: $viewModel.navigationSelection,
                             destination: {
-                                ContentView(gameLogic: viewModel.gameLogic, selectedCardSet: viewModel.navigationSelection)
+                                ContentView(gameLogic: viewModel.gameLogic, menuViewModel: viewModel,  selectedCardSet: viewModel.navigationSelection)
                             },
                             label: {
                                 ZStack {

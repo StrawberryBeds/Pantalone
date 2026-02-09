@@ -12,6 +12,7 @@ import GameKit
 struct ContentView: View {
     
     @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
     let cream = Color("Cream")
@@ -61,7 +62,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
-                    GameOverModal(gameLogic: gameLogic)
+                    GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
                 }
             }
         }
