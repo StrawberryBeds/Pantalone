@@ -14,7 +14,6 @@ struct ContentView: View {
     @ObservedObject var gameLogic: GameLogic
     @State var selectedCardSet: CardSet?
     
-//    let paperBag = Color("PaperBag")
     let cream = Color("Cream")
     let offWhite = Color("OffWhite")
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
@@ -61,6 +60,9 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+                .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
+                    GameOverModal(gameLogic: gameLogic)
+                }
             }
         }
     }

@@ -17,6 +17,8 @@ class GameLogic: ObservableObject {
     @Published var turns: Int = 0
     @Published var matches: Int = 0
     
+    @Published var gameOverModalIsPresented : Bool = false
+    
     var localPlayer = GKLocalPlayer.local
     
     var rootViewController: UIViewController? {
@@ -45,7 +47,6 @@ class GameLogic: ObservableObject {
     // Ensure selectedCardSet is accessible within the class
     var selectedCardSet: CardSet?
 
-    
     func handleCardClick(_ id: Int) {
         
         _ = GameCenterView(gameLogic: self)
@@ -79,6 +80,7 @@ class GameLogic: ObservableObject {
                 self.flippedIndices.removeAll()
                 
                 if self.solvedIndices.count == self.cards.count {
+                    self.gameOverModalIsPresented = true
                     print("GameLogic - You won!")
                     let gameCenterView = GameCenterView(gameLogic: self)
                     gameCenterView.submitScore()
