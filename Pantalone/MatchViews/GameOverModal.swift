@@ -12,27 +12,42 @@ struct GameOverModal: View {
     var gameLogic = GameLogic()
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
     
+    
     var body: some View {
-
-            Text("Congratulations!")
-                .font(customTitle)
-                .padding()
-            
-            Text("You matched all the cards in x turns")
-            
-            Text("Try to match the cards in less than 16 turns")
-            
-            
+        
+        Text("Congratulations!")
+            .font(customTitle)
+            .padding()
+        
+        Image("card_back_bird")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 150, height: 150)
+            .cornerRadius(16)
+        
+        
+        Text("You matched all the cards in \(gameLogic.turns) turns!")
+            .padding(10)
+        
+        Text("Try to match the cards in less than 16 turns.")
+            .padding(10)
+        
+        
         HStack {
             Button("Admire your game!") {
                 gameLogic.gameOverModalIsPresented = false
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderedProminent)
+            .foregroundStyle(.primary)
+            .padding()
             
             Button("Play a new game!") {
                 gameLogic.gameOverModalIsPresented = false
                 gameLogic.handleReset()
             }
+            .buttonStyle(.borderedProminent)
+            .foregroundStyle(.primary)
+            .padding()
         }
     }
 }
