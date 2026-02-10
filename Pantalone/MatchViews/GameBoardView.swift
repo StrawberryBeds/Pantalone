@@ -21,7 +21,7 @@ struct GameBoardView: View {
     
     let cream = Color("Cream")
     let offWhite = Color("OffWhite")
-    let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 32)
+    let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
     
     let columns = [
         GridItem(.flexible(), spacing: 10),

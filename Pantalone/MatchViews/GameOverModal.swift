@@ -10,6 +10,7 @@ import SwiftUI
 struct GameOverModal: View {
     
     @ObservedObject var menuViewModel: MenuViewModel
+    @Environment(\.colorScheme) var colorScheme
 //    @ObservedObject var sharingViewModel: SharingViewModel
     
     var gameLogic = GameLogic()
@@ -27,6 +28,7 @@ struct GameOverModal: View {
             VStack {
                 Text("Congratulations!")
                     .font(customTitle)
+                    .foregroundColor(colorScheme == .dark ? .black : .black)
                     .bold()
                     .padding()
                 
@@ -39,10 +41,12 @@ struct GameOverModal: View {
                 
                 Text("You matched all the cards in \(gameLogic.turns) turns!")
                     .bold()
+                    .foregroundColor(colorScheme == .dark ? .black : .black)
                     .padding(10)
                 
                 Text("Try to match the cards in less than 16 turns.")
                     .bold()
+                    .foregroundColor(colorScheme == .dark ? .black : .black)
                     .padding(10)
                 
                 
@@ -51,7 +55,7 @@ struct GameOverModal: View {
                         gameLogic.gameOverModalIsPresented = false
                     }
                     .buttonStyle(.borderedProminent)
-                    .foregroundStyle(.primary)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
                     .padding()
                     
                     Button("Play a new game!") {
@@ -59,7 +63,7 @@ struct GameOverModal: View {
                         gameLogic.handleReset()
                     }
                     .buttonStyle(.borderedProminent)
-                    .foregroundStyle(.primary)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
                     .padding()
                 }
                 

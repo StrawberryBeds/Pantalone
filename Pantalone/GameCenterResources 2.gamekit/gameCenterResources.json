@@ -22,7 +22,6 @@
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "turns",
-          "formatterSuffixSingular" : "turn",
           "locale" : "en-GB",
           "localID" : "com.pantalone.match.lb.birds-en-GB",
           "name" : "Birds"
@@ -46,12 +45,15 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "referenceName" : "MatchEmojis",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-02-09T23:35:45Z",
+        "referenceName" : "MatchLBBirds",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
-        "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.match.lb.emojis",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.match.lb.birds",
         "visibility" : "SHOW_FOR_ALL"
       },
       {
@@ -60,12 +62,15 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "referenceName" : "MatchBirds",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-02-09T23:40:43Z",
+        "referenceName" : "MatchLBEmojis",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
-        "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.match.lb.birds",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.match.lb.emojis",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]
