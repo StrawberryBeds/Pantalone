@@ -16,8 +16,8 @@ struct ContentView: View {
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
-    @State private var shareImage: UIImage? = nil
-    @State private var showingShareSheet = false
+//    @State private var shareImage: UIImage? = nil
+//    @State private var showingShareSheet = false
     
     let cream = Color("Cream")
     
@@ -27,6 +27,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 GameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)
+                    .frame(maxWidth: .infinity)
                 
                 
 //                Button("Generate Image and Share") {
@@ -39,7 +40,6 @@ struct ContentView: View {
 //                    }
 //                }
             }
-            .padding()
             .padding()
             .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
                 GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)

@@ -61,6 +61,7 @@ struct GameBoardView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
