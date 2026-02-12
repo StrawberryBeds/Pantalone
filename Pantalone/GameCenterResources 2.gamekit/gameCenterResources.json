@@ -3,6 +3,64 @@
     "version" : "2024-11-15"
   },
   "resources" : {
+    "achievementImages" : {
+      "com.pantalone.match.ac.birds-en-CA" : [
+        {
+          "localID" : "com.pantalone.match.ac.birds-en-CA",
+          "url" : "en-CA\/AchievementImage-com.pantalone.match.ac.birds-en-CA.png"
+        }
+      ],
+      "com.pantalone.match.ac.emojis-en-CA" : [
+        {
+          "localID" : "com.pantalone.match.ac.emojis-en-CA",
+          "url" : "en-CA\/AchievementImage-com.pantalone.match.ac.emojis-en-CA.png"
+        }
+      ]
+    },
+    "achievementLocalizations" : {
+      "com.pantalone.match.ac.birds" : [
+        {
+          "afterEarnedDescription" : "You matched the Birds card set in less than 16 turns!",
+          "beforeEarnedDescription" : "Match the Birds card set in less than 16 turns.",
+          "locale" : "en-CA",
+          "localID" : "com.pantalone.match.ac.birds-en-CA",
+          "name" : "Birds Matched!"
+        }
+      ],
+      "com.pantalone.match.ac.emojis" : [
+        {
+          "afterEarnedDescription" : "You matched the Emojis card set in less than 16 turns!",
+          "beforeEarnedDescription" : "Match the Emoji card set in less than 16 turns.",
+          "locale" : "en-CA",
+          "localID" : "com.pantalone.match.ac.emojis-en-CA",
+          "name" : "Emojis Matched!"
+        }
+      ]
+    },
+    "achievements" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 100,
+        "referenceName" : "MatchACEmojis",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "com.pantalone.match.ac.emojis"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 100,
+        "referenceName" : "MatchACBirds",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "com.pantalone.match.ac.birds"
+      }
+    ],
     "leaderboardImages" : {
       "com.pantalone.match.lb.birds-en-GB" : [
         {

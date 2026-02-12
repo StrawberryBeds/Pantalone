@@ -40,7 +40,6 @@ struct ContentView: View {
 //                    }
 //                }
             }
-            .padding()
             .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
                 GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
             }
