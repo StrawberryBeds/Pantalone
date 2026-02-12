@@ -13,14 +13,16 @@ import Combine
 struct MenuView: View {
     @StateObject var viewModel: MenuViewModel
     @Environment(\.colorScheme) var colorScheme
-
+    
+    let slideMenuViewModel = SlideMenuViewModel()
+    
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     
     let cream = Color("Cream")
     
     let columns = [
         GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10),
+//        GridItem(.flexible(), spacing: 10),
     ]
     
     init(gameLogic: GameLogic) {
@@ -33,12 +35,12 @@ struct MenuView: View {
                 Text("Match!")
                     .font(customTitle)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
-//                    .padding()
+                //                    .padding()
                 Text("Choose a card set to match.")
                     .bold()
                     .foregroundColor(colorScheme == .dark ? .black : .white)
-                    .padding()
-            
+//                    .padding()
+                
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(viewModel.cardSets) { cardSet in
                         NavigationLink(
@@ -67,7 +69,10 @@ struct MenuView: View {
                         )
                     }
                 }
+                
+                SlideMenuView(slideMenuViewModel: slideMenuViewModel)
             }
+
             .foregroundColor(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.accentColor)
@@ -75,4 +80,6 @@ struct MenuView: View {
         }
     }
 }
+
+
 
