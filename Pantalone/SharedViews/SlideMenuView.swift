@@ -5,7 +5,6 @@
 //  Created by Samuel Wood on 2026-02-12.
 //
 
-
 import SwiftUI
 import GameKit
 import Combine
@@ -18,24 +17,15 @@ struct SlideMenuView: View {
     
     let cream = Color("Cream")
     
-//    let columns = [
-//        GridItem(.flexible(), spacing: 5),
-//        GridItem(.flexible(), spacing: 5),
-        //        GridItem(.flexible(), spacing: 5),
-        //        GridItem(.flexible(), spacing: 5),
-        //        GridItem(.flexible(), spacing: 5)
-//    ]
-    
     var body: some View {
         NavigationStack {
+            VStack {
                 Text("Slide!")
                     .font(customTitle)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
-                //                    .padding()
                 Text("Choose a card to slide.")
                     .bold()
                     .foregroundColor(colorScheme == .dark ? .black : .white)
-//                    .padding()
                 
                 ScrollView(.horizontal) {
                     HStack {
@@ -44,7 +34,7 @@ struct SlideMenuView: View {
                                 tag: slideImage,
                                 selection: $slideMenuViewModel.navigationSelection,
                                 destination: {
-                                    SlideView()
+                                    SlideView(selectedImage: slideImage)
                                 },
                                 label: {
                                     ZStack {
@@ -69,4 +59,5 @@ struct SlideMenuView: View {
                 }
             }
         }
+    }
 }
