@@ -42,6 +42,47 @@ class SlideGameLogic {
                 _ = moveTile(at: randomMove)
             }
         }
+        
+        // After shuffle, print the board state
+        print("\n=== BOARD STATE AFTER SHUFFLE ===")
+        printBoardWithEmptyPosition()
+        printValidMovesDetailed()
+    }
+    
+    func printBoardWithEmptyPosition() {
+        print("Empty position: (\(emptyPosition.row), \(emptyPosition.col))")
+        print("Board:")
+        for (rowIndex, row) in tiles.enumerated() {
+            let printRow = row.enumerated().map { (colIndex, tile) -> String in
+                if rowIndex == 3 && colIndex > 0 {
+                    return "  "  // Non-playable space
+                }
+                if rowIndex == emptyPosition.row && colIndex == emptyPosition.col {
+                    return "[]"  // Empty position
+                }
+                return tile == nil ? "??" : String(format: "%2d", tile!)
+            }
+            print(printRow.joined(separator: " "))
+        }
+        print()
+    }
+    
+    func printValidMovesDetailed() {
+        let validMoves = getValidMoves()
+        print("Valid moves (tiles that can move into empty space):")
+        for move in validMoves {
+            let tileValue = tiles[move.row][move.col] ?? -1
+            print("  - Position (\(move.row), \(move.col)) - Tile \(tileValue)")
+        }
+        print("Total valid moves: \(validMoves.count)")
+        print()
+    }
+    
+    // Add this to test immediately after initialization
+    func testInitialState() {
+        print("\n=== INITIAL STATE TEST ===")
+        printBoardWithEmptyPosition()
+        printValidMovesDetailed()
     }
     
     func getValidMoves() -> [Position] {
@@ -62,11 +103,29 @@ class SlideGameLogic {
     }
     
     func moveTile(at position: Position) -> Bool {
-        guard canMoveTile(at: position) else { return false }
+        let tileValue = tiles[position.row][position.col] ?? -1
+        let canMove = canMoveTile(at: position)
+        
+        print("\n--- Move Attempt ---")
+        print("Tapped position: (\(position.row), \(position.col)) - Tile \(tileValue)")
+        print("Empty position: (\(emptyPosition.row), \(emptyPosition.col))")
+        print("Adjacent check:")
+        print("  Row diff: \(abs(position.row - emptyPosition.row))")
+        print("  Col diff: \(abs(position.col - emptyPosition.col))")
+        print("Can move: \(canMove)")
+        
+        guard canMove else {
+            print("Move REJECTED")
+            return false
+        }
         
         tiles[emptyPosition.row][emptyPosition.col] = tiles[position.row][position.col]
         tiles[position.row][position.col] = nil
         emptyPosition = position
+        
+        print("Move SUCCESSFUL! New empty position: (\(emptyPosition.row), \(emptyPosition.col))")
+        printBoardWithEmptyPosition()
+        printValidMovesDetailed()
         
         return true
     }

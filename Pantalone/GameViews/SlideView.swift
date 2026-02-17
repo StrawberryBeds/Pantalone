@@ -26,26 +26,22 @@ struct SlideView: View {
                 .font(.title2)
                 .foregroundColor(.secondary)
             
-            // Game board
+            // Game board - KEY FIX: Add .id() to force rebuild
             VStack(spacing: 4) {
                 ForEach(0..<4) { row in
                     HStack(spacing: 4) {
                         ForEach(0..<3) { col in
-                            TileView(
-                                tile: viewModel.getTile(at: Position(row: row, col: col)),
-                                isPlayable: viewModel.isValidPlayableSpace(row: row, col: col),
-                                canMove: viewModel.canMoveTile(at: Position(row: row, col: col)),
-                                imageCrop: viewModel.getTile(at: Position(row: row, col: col)).map { viewModel.getImageCrop(for: $0) as! AnyView }
+                            TileViewWithTap(
+                                row: row,
+                                col: col,
+                                viewModel: viewModel
                             )
-                            .onTapGesture {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    viewModel.moveTile(at: Position(row: row, col: col))
-                                }
-                            }
+                            .id("\(row)-\(col)")  // Unique ID for each tile!
                         }
                     }
                 }
             }
+            .id(viewModel.moveCount)
             .padding()
             .background(Color.gray.opacity(0.2))
             .cornerRadius(12)
@@ -95,45 +91,82 @@ struct SlideView: View {
     }
 }
 
+struct TileViewWithTap: View {
+    let row: Int
+    let col: Int
+    @ObservedObject var viewModel: SlideGameViewModel
+    
+    var body: some View {
+        let position = Position(row: row, col: col)
+        let tile = viewModel.getTile(at: position)
+        let isPlayable = viewModel.isValidPlayableSpace(row: row, col: col)
+        let canMove = isPlayable && tile != nil &&
+                      ((abs(position.row - viewModel.emptyPosition.row) == 1 && position.col == viewModel.emptyPosition.col) ||
+                       (abs(position.col - viewModel.emptyPosition.col) == 1 && position.row == viewModel.emptyPosition.row))
+        
+        Button(action: {
+            print("SlideView - Position (\(row), \(col)) tapped")
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                viewModel.moveTile(at: Position(row: row, col: col))
+            }
+        }) {
+            TileView(
+                tile: tile,
+                isPlayable: isPlayable,
+                canMove: canMove,
+                imageCrop: tile.map { viewModel.getImageCrop(for: $0) as! AnyView },
+                position: position
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
 struct TileView: View {
     let tile: Int?
     let isPlayable: Bool
     let canMove: Bool
     let imageCrop: AnyView?
+    let position: Position
     
     private let tileSize: CGFloat = 100
     
     var body: some View {
         ZStack {
             if isPlayable {
-                if let _ = tile, let imageCrop = imageCrop {
-                    // Tile with image crop
+                if let tileNumber = tile {
+                    // Tile with number (no image for now - just debugging)
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white)
+                        .fill(canMove ? Color.blue : Color.gray)
                         .frame(width: tileSize, height: tileSize)
                         .overlay(
-                            imageCrop
-                                .frame(width: tileSize, height: tileSize)
-                                .cornerRadius(8)
+                            VStack {
+                                Text("T\(tileNumber)")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                Text("(\(position.row),\(position.col))")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                            }
                         )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(canMove ? Color.blue : Color.gray, lineWidth: canMove ? 3 : 1)
-                        )
-                        .shadow(radius: canMove ? 5 : 2)
-                        .scaleEffect(canMove ? 1.0 : 0.95)
                 } else {
-                    // Empty space (void)
+                    // Empty space
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.black.opacity(0.1))
                         .frame(width: tileSize, height: tileSize)
+                        .overlay(
+                            Text("EMPTY\n(\(position.row),\(position.col))")
+                                .font(.caption2)
+                                .foregroundColor(.gray)
+                        )
                 }
             } else {
-                // Non-playable space
+                // Non-playable
                 Rectangle()
-                    .fill(Color.clear)
+                    .fill(Color.red.opacity(0.3))
                     .frame(width: tileSize, height: tileSize)
             }
         }
+        .contentShape(Rectangle())  // CRITICAL: Makes entire frame tappable
     }
 }

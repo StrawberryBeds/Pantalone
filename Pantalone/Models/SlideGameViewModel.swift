@@ -19,6 +19,7 @@ class SlideGameViewModel: ObservableObject {
     init(selectedImage: SlideImage?) {
         self.selectedImage = selectedImage
         game = SlideGameLogic(selectedImage: selectedImage)
+        game.testInitialState()  // Test before shuffle
     }
     
     var tiles: [[Int?]] {
@@ -36,6 +37,7 @@ class SlideGameViewModel: ObservableObject {
     func moveTile(at position: Position) {
         if game.moveTile(at: position) {
             moveCount += 1
+            objectWillChange.send()  // Force UI update
             checkWinCondition()
         }
     }
@@ -48,12 +50,14 @@ class SlideGameViewModel: ObservableObject {
         game.shuffle()
         moveCount = 0
         isGameWon = false
+        objectWillChange.send()  // Force UI update
     }
     
     func resetGame() {
         game = SlideGameLogic(selectedImage: selectedImage)
         moveCount = 0
         isGameWon = false
+        objectWillChange.send()  // Force UI update
     }
     
     private func checkWinCondition() {
@@ -63,24 +67,19 @@ class SlideGameViewModel: ObservableObject {
     }
     
     func isValidPlayableSpace(row: Int, col: Int) -> Bool {
-        // Bottom row only has 1 playable space (column 0)
         if row == 3 && col > 0 {
             return false
         }
         return true
     }
     
-    // Get the cropped portion of the image for a specific tile
     func getImageCrop(for tileNumber: Int) -> some View {
         guard let selectedImage = selectedImage else {
             return AnyView(EmptyView())
         }
         
-        // Calculate which part of the 3x3 grid this tile belongs to
         let row = tileNumber / 3
         let col = tileNumber % 3
-        
-        let cropSize: CGFloat = 500 / 3  // Each tile is 166.67px of the 500px image
         
         return AnyView(
             GeometryReader { geometry in
