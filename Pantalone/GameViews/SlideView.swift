@@ -26,7 +26,7 @@ struct SlideView: View {
                 .font(.title2)
                 .foregroundColor(.secondary)
             
-            // Game board - KEY FIX: Add .id() to force rebuild
+            // Game board
             VStack(spacing: 4) {
                 ForEach(0..<4) { row in
                     HStack(spacing: 4) {
@@ -36,7 +36,7 @@ struct SlideView: View {
                                 col: col,
                                 viewModel: viewModel
                             )
-                            .id("\(row)-\(col)")  // Unique ID for each tile!
+                            .id("\(row)-\(col)")
                         }
                     }
                 }
@@ -105,7 +105,6 @@ struct TileViewWithTap: View {
                        (abs(position.col - viewModel.emptyPosition.col) == 1 && position.row == viewModel.emptyPosition.row))
         
         Button(action: {
-            print("SlideView - Position (\(row), \(col)) tapped")
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 viewModel.moveTile(at: Position(row: row, col: col))
             }
@@ -134,36 +133,36 @@ struct TileView: View {
     var body: some View {
         ZStack {
             if isPlayable {
-                if let tileNumber = tile {
-                    // Tile with number (no image for now - just debugging)
+                if let tileNumber = tile, let imageCrop = imageCrop {
+                    // Tile with image crop
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(canMove ? Color.blue : Color.gray)
+                        .fill(Color.white)
                         .frame(width: tileSize, height: tileSize)
                         .overlay(
-                            VStack {
-                                Text("T\(tileNumber)")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("(\(position.row),\(position.col))")
-                                    .font(.caption)
-                                    .foregroundColor(.white)
-                            }
+                            imageCrop
+                                .frame(width: tileSize, height: tileSize)
+                                .cornerRadius(8)
                         )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(canMove ? Color.green : Color.clear, lineWidth: canMove ? 3 : 0)
+                        )
+                        .shadow(radius: canMove ? 5 : 2)
                 } else {
-                    // Empty space
+                    // Empty space (void)
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.black.opacity(0.1))
+                        .fill(Color.black.opacity(0.15))
                         .frame(width: tileSize, height: tileSize)
                         .overlay(
-                            Text("EMPTY\n(\(position.row),\(position.col))")
-                                .font(.caption2)
+                            RoundedRectangle(cornerRadius: 8)
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [5]))
                                 .foregroundColor(.gray)
                         )
                 }
             } else {
-                // Non-playable
+                // Non-playable space
                 Rectangle()
-                    .fill(Color.red.opacity(0.3))
+                    .fill(Color.clear)
                     .frame(width: tileSize, height: tileSize)
             }
         }
