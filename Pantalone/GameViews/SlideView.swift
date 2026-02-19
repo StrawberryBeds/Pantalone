@@ -9,75 +9,84 @@ import SwiftUI
 
 struct SlideView: View {
     @StateObject private var viewModel: SlideGameViewModel
+    @Environment(\.colorScheme) var colorScheme
+    
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
+    let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
+    
+    let cream = Color("Cream")
     
     init(selectedImage: SlideImage?) {
         _viewModel = StateObject(wrappedValue: SlideGameViewModel(selectedImage: selectedImage))
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            // Title
-            Text("Sliding Puzzle")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            // Move counter
-            Text("Moves: \(viewModel.moveCount)")
-                .font(.title2)
-                .foregroundColor(.secondary)
-            
-            // Game board
-            VStack(spacing: 4) {
-                ForEach(0..<4) { row in
-                    HStack(spacing: 4) {
-                        ForEach(0..<3) { col in
-                            TileViewWithTap(
-                                row: row,
-                                col: col,
-                                viewModel: viewModel
-                            )
-                            .id("\(row)-\(col)")
+        ZStack {
+            Color.cream
+                .ignoresSafeArea()
+            VStack(spacing: 20) {
+                // Title
+                Text("Slide")
+                    .foregroundColor(.black)
+                    .font(customTitle)
+                
+                // Move counter
+                Text("Moves: \(viewModel.moveCount)")
+                    .foregroundColor(.black)
+                    .font(customHeadline)
+                
+                // Game board
+                VStack(spacing: 4) {
+                    ForEach(0..<4) { row in
+                        HStack(spacing: 4) {
+                            ForEach(0..<3) { col in
+                                TileViewWithTap(
+                                    row: row,
+                                    col: col,
+                                    viewModel: viewModel
+                                )
+                                .id("\(row)-\(col)")
+                            }
                         }
                     }
                 }
-            }
-            .id(viewModel.moveCount)
-            .padding()
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(12)
-            
-            // Buttons
-            HStack(spacing: 20) {
-                Button(action: {
-                    withAnimation {
-                        viewModel.shuffle()
+                .id(viewModel.moveCount)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(12)
+                
+                // Buttons
+                HStack(spacing: 20) {
+                    Button(action: {
+                        withAnimation {
+                            viewModel.shuffle()
+                        }
+                    }) {
+                        Text("Shuffle")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 120, height: 50)
+                            .background(.accent)
+                            .cornerRadius(30)
                     }
-                }) {
-                    Text("Shuffle")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 120, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                    
+                    Button(action: {
+                        withAnimation {
+                            viewModel.resetGame()
+                        }
+                    }) {
+                        Text("Reset")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 120, height: 50)
+                            .background(.accent)
+                            .cornerRadius(30)
+                    }
                 }
                 
-                Button(action: {
-                    withAnimation {
-                        viewModel.resetGame()
-                    }
-                }) {
-                    Text("Reset")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 120, height: 50)
-                        .background(Color.orange)
-                        .cornerRadius(10)
-                }
+                Spacer()
             }
-            
-            Spacer()
         }
-        .padding()
         .alert("Congratulations!", isPresented: $viewModel.isGameWon) {
             Button("Play Again") {
                 viewModel.shuffle()
@@ -145,7 +154,7 @@ struct TileView: View {
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(canMove ? Color.green : Color.clear, lineWidth: canMove ? 3 : 0)
+                                .stroke(canMove ? Color.accent : Color.clear, lineWidth: canMove ? 3 : 0)
                         )
                         .shadow(radius: canMove ? 5 : 2)
                 } else {
