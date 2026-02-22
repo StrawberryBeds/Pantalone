@@ -16,6 +16,8 @@ struct ContentView: View {
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
+    
 //    @State private var shareImage: UIImage? = nil
 //    @State private var showingShareSheet = false
     
@@ -25,7 +27,13 @@ struct ContentView: View {
         ZStack {
             Color.cream
                 .ignoresSafeArea()
+            
             VStack {
+                Text("Match")
+                    .foregroundColor(.black)
+                    .font(customTitle)
+                    .padding()
+                
                 GameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)
                     .frame(maxWidth: .infinity)
                 
