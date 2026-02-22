@@ -14,7 +14,7 @@ struct MenuView: View {
     @StateObject var viewModel: MenuViewModel
     @Environment(\.colorScheme) var colorScheme
 
-    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 32)
+    let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     
     let cream = Color("Cream")
     
@@ -30,9 +30,14 @@ struct MenuView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Choose a set to match!")
+                Text("Match!")
                     .font(customTitle)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
+//                    .padding()
+                Text("Choose a card set to match.")
+                    .bold()
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .padding()
             
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(viewModel.cardSets) { cardSet in
@@ -40,7 +45,7 @@ struct MenuView: View {
                             tag: cardSet,
                             selection: $viewModel.navigationSelection,
                             destination: {
-                                ContentView(gameLogic: viewModel.gameLogic, selectedCardSet: viewModel.navigationSelection)
+                                ContentView(gameLogic: viewModel.gameLogic, menuViewModel: viewModel,  selectedCardSet: viewModel.navigationSelection)
                             },
                             label: {
                                 ZStack {

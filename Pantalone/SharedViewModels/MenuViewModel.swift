@@ -10,8 +10,12 @@ import SwiftUI
 import GameKit
 import Combine
 
+var sortedCardSets: [CardSet] {
+    CardDataSource.cardSets.sorted(by: { $0.id > $1.id })
+}
+
 class MenuViewModel: ObservableObject {
-    let cardSets = CardDataSource.cardSets
+    let cardSets = sortedCardSets
     @Published var selectedCardSet: CardSet? = nil
     @Published var navigationSelection: CardSet? = nil
     let gameLogic: GameLogic
@@ -27,3 +31,5 @@ class MenuViewModel: ObservableObject {
         navigationSelection = cardSet
     }
 }
+
+

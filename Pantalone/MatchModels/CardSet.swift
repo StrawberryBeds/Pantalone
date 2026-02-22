@@ -15,4 +15,5 @@ struct CardSet: Identifiable, Equatable, Hashable {
     let setImage: String
     let cardImages: [String]
     let leaderboardIDs: [String]
+    let achievementIDs: [String]
 }
