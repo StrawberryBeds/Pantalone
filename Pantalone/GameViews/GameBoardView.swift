@@ -16,8 +16,8 @@ struct GameBoardView: View {
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
-    @State private var shareImage: UIImage? = nil
-    @State private var showingShareSheet = false
+//    @State private var shareImage: UIImage? = nil
+//    @State private var showingShareSheet = false
     
     let cream = Color("Cream")
     let offWhite = Color("OffWhite")
