@@ -13,3 +13,5 @@ struct Card: Identifiable, Equatable {
     let id: Int
     let image: String
 }
+
+
