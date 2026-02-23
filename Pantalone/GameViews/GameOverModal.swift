@@ -50,31 +50,54 @@ struct GameOverModal: View {
                     .padding(10)
                 
                 
-                HStack {
-                    Button("Admire your game!") {
+//                HStack {
+//                    Button("Admire your game!") {
+//                        gameLogic.gameOverModalIsPresented = false
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                    .foregroundColor(colorScheme == .dark ? .black : .white)
+//                    .padding()
+//                    
+//                    Button("Play a new game!") {
+//                        gameLogic.gameOverModalIsPresented = false
+//                        gameLogic.handleReset()
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                    .foregroundColor(colorScheme == .dark ? .black : .white)
+//                    .padding()
+//                }
+                
+                HStack(spacing: 20) {
+                    Button(action: {
                         gameLogic.gameOverModalIsPresented = false
+                    }) {
+                        Text("Admire your game!")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 132, height: 60)
+                            .background(.accent)
+                            .cornerRadius(30)
+                            .padding()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
-                    .padding()
                     
-                    Button("Play a new game!") {
+                    Button(action: {
                         gameLogic.gameOverModalIsPresented = false
                         gameLogic.handleReset()
+                    }) {
+                        Text("Play a new game!")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 132, height: 60)
+                            .background(.accent)
+                            .cornerRadius(30)
+                            .padding()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
-                    .padding()
                 }
-                
-//                Button("Share your score with your friends!", systemImage: "square.and.arrow.up.fill") {
-//                    gameLogic.gameOverModalIsPresented = false
-//                }
             }
         }
     }
 }
 
 //#Preview {
-//    GameOverModal(menuViewModel: MenuViewModel(), )
+//    GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
 //}
