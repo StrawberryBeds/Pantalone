@@ -5,7 +5,6 @@
 //  Created by Samuel Wood on 2026-02-04.
 //
 
-
 import SwiftUI
 import GameKit
 import Combine
@@ -28,7 +27,8 @@ class CustomLeaderboardViewModel: ObservableObject {
         
         // Get all unique leaderboard IDs from card sets (static property)
         let allLeaderboardIDs = cardSets.flatMap { $0.leaderboardIDs }
-        let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs))
+        let slideLeaderboardIDs = SlideSource.slideImages.map { $0.leaderboardID }
+        let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs + slideLeaderboardIDs))
         
         guard !uniqueLeaderboardIDs.isEmpty else {
             DispatchQueue.main.async {
@@ -53,15 +53,34 @@ class CustomLeaderboardViewModel: ObservableObject {
                     return
                 }
                 
-                // Map leaderboards to our display model
-                self.availableLeaderboards = leaderboards.map { leaderboard in
-                    let matchingSet = self.cardSets.first { $0.leaderboardIDs.contains(leaderboard.baseLeaderboardID) }
+                // Map leaderboards to our display model for Match leaderboards
+                var matchLeaderboards = leaderboards.compactMap { leaderboard -> LeaderboardInfo? in
+                    if self.cardSets.contains(where: { $0.leaderboardIDs.contains(leaderboard.baseLeaderboardID) }) {
+                        let matchingSet = self.cardSets.first { $0.leaderboardIDs.contains(leaderboard.baseLeaderboardID) }
+                        return LeaderboardInfo(
+                            id: leaderboard.baseLeaderboardID,
+                            name: leaderboard.title ?? "Leaderboard",
+                            setImage: matchingSet?.setImage ?? "card_back_bird")
+                    }
+                    return nil
+                }
+                
+                // Add Slide leaderboards
+                let slideLeaderboards = SlideSource.slideImages.compactMap { slideImage -> LeaderboardInfo? in
+                    guard let leaderboard = leaderboards.first(where: { $0.baseLeaderboardID == slideImage.leaderboardID }) else {
+                        return nil
+                    }
+                    let matchingSet = self.cardSets.first(where: { $0.setName == slideImage.cardSet })
                     return LeaderboardInfo(
-                        id: leaderboard.baseLeaderboardID,
-                        name: leaderboard.title ?? "Leaderboard",
+                        id: slideImage.leaderboardID,
+                        name: slideImage.imageName,
                         setImage: matchingSet?.setImage ?? "card_back_bird")
                 }
-                .sorted { $0.name < $1.name }  // Sort alphabetically
+                
+                matchLeaderboards.append(contentsOf: slideLeaderboards)
+                
+                // Sort alphabetically
+                self.availableLeaderboards = matchLeaderboards.sorted { $0.name < $1.name }
             }
         }
     }

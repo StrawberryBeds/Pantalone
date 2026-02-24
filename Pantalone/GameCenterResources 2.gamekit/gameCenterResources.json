@@ -94,6 +94,16 @@
           "localID" : "com.pantalone.match.lb.emojis-en-GB",
           "name" : "Emojis"
         }
+      ],
+      "com.pantalone.slide.birds.barn_owl.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
+          "name" : "Barn Owl"
+        }
       ]
     },
     "leaderboards" : [
@@ -129,6 +139,20 @@
         "scoreSortType" : "ASC",
         "submissionType" : "BEST_SCORE",
         "vendorIdentifier" : "com.pantalone.match.lb.emojis",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "SlideBirdsLBBarnOwl",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.barn_owl.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]

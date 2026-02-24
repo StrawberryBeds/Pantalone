@@ -63,6 +63,12 @@ class SlideGameViewModel: ObservableObject {
     private func checkWinCondition() {
         if game.isSolved() {
             isGameWon = true
+            if let leaderboardID = selectedImage?.leaderboardID {
+                Task {
+                    await GameCenterManager.shared.submitScore(self.moveCount, leaderboardIDs: [leaderboardID])
+                    print("Submitted \(moveCount) moves to leaderboard: \(leaderboardID)")
+                }
+            }
         }
     }
     
@@ -96,3 +102,4 @@ class SlideGameViewModel: ObservableObject {
         )
     }
 }
+
