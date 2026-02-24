@@ -7,8 +7,8 @@
 
 
 import Foundation
-import GameKit
 import Combine
+import UIKit
 
 class GameLogic: ObservableObject {
     @Published var cards: [Card] = []
@@ -19,37 +19,21 @@ class GameLogic: ObservableObject {
     
     @Published var gameOverModalIsPresented : Bool = false
     
-    var localPlayer = GKLocalPlayer.local
-    
     var rootViewController: UIViewController? {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         return windowScene?.windows.first?.rootViewController
     }
     
     func authenticateUser() {
-        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
-            if let error = error {
-                print("GameLogic - Error authenticating: \(error.localizedDescription)")
-                return
-            }
-            if let gcAuthVC = gcAuthVC {
-                // Present the authentication view controller if needed
-                self.rootViewController?.present(gcAuthVC, animated: true)
-                return
-                
-            } else {
-                print("GameLogic - Player authenticated: \(GKLocalPlayer.local.isAuthenticated)")
-            }
-        }
+        // Delegate authentication to GameCenterManager
+        GameCenterManager.shared.authenticateUser(presentingViewController: rootViewController)
     }
-    
     
     // Ensure selectedCardSet is accessible within the class
     var selectedCardSet: CardSet?
 
     func handleCardClick(_ id: Int) {
         
-        _ = GameCenterView(gameLogic: self)
         // If the card is already flipped or solved, do nothing
         if flippedIndices.contains(id) || solvedIndices.contains(id) {
             return
@@ -82,11 +66,13 @@ class GameLogic: ObservableObject {
                 if self.solvedIndices.count == self.cards.count {
                     self.gameOverModalIsPresented = true
                     print("GameLogic - You won!")
-                    let gameCenterView = GameCenterView(gameLogic: self)
-                    gameCenterView.submitScore()
+                    
+                    // Submit score and report achievement via GameCenterManager
+                    Task {
+                        await GameCenterManager.shared.submitScore(self.turns, leaderboardIDs: ["com.pantalone.match.lb.birds"])
+                    }
+                    GameCenterManager.shared.reportAchievement("com.pantalone.match.ach.birds", percentComplete: 100)
                 }
-
-                
             }
         }
     }
@@ -118,3 +104,4 @@ class GameLogic: ObservableObject {
         // Handle the dismissing action.
     }
 }
+

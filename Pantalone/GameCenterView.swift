@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import GameKit
 
 struct GameCenterView: View {
     var gameLogic: GameLogic
@@ -28,31 +27,20 @@ struct GameCenterView: View {
             leaderboardIDs = gameLogic.selectedCardSet?.leaderboardIDs ?? []
         }
 
-        // Submit score to leaderboard
         Task {
             do {
-                try await GKLeaderboard.submitScore(
-                    gameLogic.turns,
-                    context: 0,
-                    player: GKLocalPlayer.local,
-                    leaderboardIDs: leaderboardIDs
-                )
+                try await GameCenterManager.shared.submitScore(gameLogic.turns, leaderboardIDs: leaderboardIDs)
                 print("GameCenterView - Score submitted successfully: \(leaderboardIDs) \(gameLogic.turns)")
             } catch {
                 print("GameCenterView - Failed to submit score: \(error.localizedDescription)")
             }
-        }
 
-        // Report achievement if turns <= 16
-        if gameLogic.turns <= 16, let achievementID = achievementIDs.first {
-            let achievement = GKAchievement(identifier: achievementID)
-            achievement.percentComplete = 100.0
-            achievement.showsCompletionBanner = true
-            GKAchievement.report([achievement]) { error in
-                if let error = error {
-                    print("Error reporting achievement: \(error.localizedDescription)")
-                } else {
+            if gameLogic.turns <= 16, let achievementID = achievementIDs.first {
+                do {
+                    try await GameCenterManager.shared.reportAchievement(achievementID, percentComplete: 100.0)
                     print("Achievement reported successfully!")
+                } catch {
+                    print("Error reporting achievement: \(error.localizedDescription)")
                 }
             }
         }
