@@ -11,7 +11,6 @@ import Combine
 
 struct SlideMenuView: View {
     @StateObject private var slideMenuViewModel: SlideMenuViewModel
-    @Environment(\.colorScheme) var colorScheme
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")
@@ -25,10 +24,10 @@ struct SlideMenuView: View {
             VStack {
                 Text("Slide!")
                     .font(customTitle)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(.black)
                 Text("Choose a card to slide.")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(.black)
                 
                 ScrollView(.horizontal) {
                     HStack {

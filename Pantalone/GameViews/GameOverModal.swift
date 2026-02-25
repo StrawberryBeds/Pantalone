@@ -10,12 +10,12 @@ import SwiftUI
 struct GameOverModal: View {
     
     @ObservedObject var menuViewModel: MenuViewModel
-    @Environment(\.colorScheme) var colorScheme
 //    @ObservedObject var sharingViewModel: SharingViewModel
     
     var gameLogic = GameLogic()
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")
+    let pantalonePink = Color("PantalonePink")
 
     
     var body: some View {
@@ -28,7 +28,7 @@ struct GameOverModal: View {
             VStack {
                 Text("Congratulations!")
                     .font(customTitle)
-                    .foregroundColor(colorScheme == .dark ? .black : .black)
+                    .foregroundColor(.black)
                     .bold()
                     .padding()
                 
@@ -41,12 +41,12 @@ struct GameOverModal: View {
                 
                 Text("You matched all the cards in \(gameLogic.turns) turns!")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .black)
+                    .foregroundColor(.black)
                     .padding(10)
                 
                 Text("Try to match the cards in less than 16 turns.")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .black)
+                    .foregroundColor(.black)
                     .padding(10)
                 
                 
@@ -73,9 +73,9 @@ struct GameOverModal: View {
                     }) {
                         Text("Admire your game!")
                             .buttonStyle(.borderedProminent)
-                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .foregroundColor(.black)
                             .frame(width: 132, height: 60)
-                            .background(.accent)
+                            .background(.pantalonePink)
                             .cornerRadius(30)
                             .padding()
                     }
@@ -86,9 +86,9 @@ struct GameOverModal: View {
                     }) {
                         Text("Play a new game!")
                             .buttonStyle(.borderedProminent)
-                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .foregroundColor(.black)
                             .frame(width: 132, height: 60)
-                            .background(.accent)
+                            .background(.pantalonePink)
                             .cornerRadius(30)
                             .padding()
                     }

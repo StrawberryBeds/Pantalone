@@ -11,10 +11,10 @@ import Combine
 
 struct MenuView: View {
     @StateObject var viewModel: MenuViewModel
-    @Environment(\.colorScheme) var colorScheme
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")
+    let pantalonePink = Color("PantalonePink")
     
     let columns = [
         GridItem(.flexible(), spacing: 10),
@@ -29,10 +29,10 @@ struct MenuView: View {
             VStack {
                 Text("Match!")
                     .font(customTitle)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
-                Text("Choose a card set to match.")
+                    .foregroundColor(.black)
+                Text("Match them all to win!")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(.black)
                 
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(viewModel.cardSets) { cardSet in
@@ -74,7 +74,7 @@ struct MenuView: View {
             }
             .foregroundColor(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.accentColor)
+            .background(Color.pantalonePink)
             .ignoresSafeArea(edges: .all)
         }
     }

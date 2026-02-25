@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SlideView: View {
     @StateObject private var viewModel: SlideGameViewModel
-    @Environment(\.colorScheme) var colorScheme
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
     
     let cream = Color("Cream")
+    let pantalonePink = Color("PantalonePink")
     
     init(selectedImage: SlideImage?) {
         _viewModel = StateObject(wrappedValue: SlideGameViewModel(selectedImage: selectedImage))
@@ -64,9 +64,9 @@ struct SlideView: View {
                     }) {
                         Text("Shuffle")
                             .buttonStyle(.borderedProminent)
-                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .foregroundColor(.black)
                             .frame(width: 120, height: 50)
-                            .background(.accent)
+                            .background(.pantalonePink)
                             .cornerRadius(30)
                     }
                     
@@ -77,9 +77,9 @@ struct SlideView: View {
                     }) {
                         Text("Reset")
                             .buttonStyle(.borderedProminent)
-                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .foregroundColor(.black)
                             .frame(width: 120, height: 50)
-                            .background(.accent)
+                            .background(.pantalonePink)
                             .cornerRadius(30)
                     }
                 }
@@ -154,7 +154,7 @@ struct TileView: View {
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(canMove ? Color.accent : Color.clear, lineWidth: canMove ? 3 : 0)
+                                .stroke(canMove ? Color.pantalonePink : Color.clear, lineWidth: canMove ? 3 : 0)
                         )
                         .shadow(radius: canMove ? 5 : 2)
                 } else {
