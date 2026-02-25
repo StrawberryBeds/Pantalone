@@ -87,9 +87,6 @@ struct LeaderboardDetailView: View {
                     }
                 }
                 .listStyle(.plain)
-                
-                Text("Slide")
-                // List Slide game scores ("[SlideImage] [Int] "moves"")
             }
         }
         .navigationBarTitleDisplayMode(.inline)
