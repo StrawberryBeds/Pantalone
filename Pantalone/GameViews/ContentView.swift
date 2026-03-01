@@ -49,7 +49,7 @@ struct ContentView: View {
 //                }
             }
             .sheet(isPresented: $gameLogic.gameOverModalIsPresented) {
-                GameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
+                MatchGameOverModal(menuViewModel: menuViewModel, gameLogic: gameLogic)
             }
 //            .sheet(isPresented: $showingShareSheet, onDismiss: {
 //                shareImage = nil // Clear the image after the sheet is dismissed
