@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SlideView: View {
     @StateObject private var viewModel: SlideGameViewModel
+//    @StateObject private var slideMenuViewModel: SlideMenuViewModel
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
@@ -87,16 +88,21 @@ struct SlideView: View {
                 Spacer()
             }
         }
-        .alert("Congratulations!", isPresented: $viewModel.isGameWon) {
-            Button("Play Again") {
-                viewModel.shuffle()
-            }
-            Button("Reset") {
-                viewModel.resetGame()
-            }
-        } message: {
-            Text("You solved the puzzle in \(viewModel.moveCount) moves!")
+        .sheet(isPresented: $viewModel.slideGameOverModalIsPresented) {
+            SlideGameOverModal(slideGameViewModel: viewModel)
         }
+        
+        
+//        .alert("Congratulations!", isPresented: $viewModel.isGameWon) {
+//            Button("Play Again") {
+//                viewModel.shuffle()
+//            }
+//            Button("Reset") {
+//                viewModel.resetGame()
+//            }
+//        } message: {
+//            Text("You solved the puzzle in \(viewModel.moveCount) moves!")
+//        }
     }
 }
 
