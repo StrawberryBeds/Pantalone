@@ -35,6 +35,7 @@ class MenuViewModel: ObservableObject {
 struct SlideImage: Identifiable, Equatable, Hashable {
     let id: Int
     let cardSetName: String
+    let cardName: String
     let leaderboardID: String
     let imageName: String
     
@@ -42,6 +43,7 @@ struct SlideImage: Identifiable, Equatable, Hashable {
     init(cardSet: CardSet, index: Int) {
         self.id = (cardSet.id * 100) + index  // Unique ID: cardSet.id * 100 + position
         self.cardSetName = cardSet.setName
+        self.cardName = cardSet.cardNames[index]
         self.leaderboardID = cardSet.slideLeaderboardIDs[index]
         self.imageName = cardSet.cardImages[index]
     }

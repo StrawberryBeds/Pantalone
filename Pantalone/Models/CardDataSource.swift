@@ -11,6 +11,7 @@ struct CardSet: Identifiable, Equatable, Hashable {
     let setName: String
     let setImage: String
     let cardImages: [String]
+    let cardNames: [String]
     let leaderboardIDs: [String]
     let achievementIDs: [String]
     
@@ -29,6 +30,7 @@ struct CardDataSource {
             setName: "Birds",
             setImage: "mallard",
             cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
+            cardNames: ["Barn Owl", "Blackbird", "Cockerel", "Cormorant", "Goose", "Kingfisher", "Mallard", "Red Kite", "Robin", "Sea Gull"],
             leaderboardIDs: ["com.pantalone.match.lb.birds"],
             achievementIDs: ["com.pantalone.match.ac.birds"]
         )

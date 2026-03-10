@@ -14,7 +14,7 @@ class SlideGameViewModel: ObservableObject {
     @Published private var game: SlideGameLogic
     @Published var moveCount: Int = 0
     @Published var isGameWon: Bool = false
-    let selectedImage: SlideImage?
+    var selectedImage: SlideImage?
     
     @Published var slideGameOverModalIsPresented : Bool = false
     
