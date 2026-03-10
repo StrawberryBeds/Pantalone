@@ -20,7 +20,6 @@ struct GameBoardView: View {
 //    @State private var showingShareSheet = false
     
     let cream = Color("Cream")
-    let offWhite = Color("OffWhite")
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
     
     let columns = [
@@ -44,7 +43,7 @@ struct GameBoardView: View {
                     
                     ZStack {
                         Rectangle()
-                            .foregroundColor(Color.offWhite)
+                            .foregroundColor(Color.cream)
                             .scaledToFit()
                             .frame(width: 80, height: 80)
                             .cornerRadius(8)

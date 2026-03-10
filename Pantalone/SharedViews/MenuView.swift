@@ -5,24 +5,19 @@
 //  Created by Samuel Wood on 2026-01-16.
 //
 
-
 import SwiftUI
 import GameKit
 import Combine
 
 struct MenuView: View {
     @StateObject var viewModel: MenuViewModel
-    @Environment(\.colorScheme) var colorScheme
-    
-    let slideMenuViewModel = SlideMenuViewModel()
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
-    
     let cream = Color("Cream")
+    let pantalonePink = Color("PantalonePink")
     
     let columns = [
         GridItem(.flexible(), spacing: 10),
-//        GridItem(.flexible(), spacing: 10),
     ]
     
     init(gameLogic: GameLogic) {
@@ -34,12 +29,10 @@ struct MenuView: View {
             VStack {
                 Text("Match!")
                     .font(customTitle)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
-                //                    .padding()
-                Text("Choose a card set to match.")
+                    .foregroundColor(.black)
+                Text("Match them all to win!")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
-//                    .padding()
+                    .foregroundColor(.black)
                 
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(viewModel.cardSets) { cardSet in
@@ -47,7 +40,11 @@ struct MenuView: View {
                             tag: cardSet,
                             selection: $viewModel.navigationSelection,
                             destination: {
-                                ContentView(gameLogic: viewModel.gameLogic, menuViewModel: viewModel,  selectedCardSet: viewModel.navigationSelection)
+                                ContentView(
+                                    gameLogic: viewModel.gameLogic,
+                                    menuViewModel: viewModel,
+                                    selectedCardSet: viewModel.navigationSelection
+                                )
                             },
                             label: {
                                 ZStack {
@@ -70,16 +67,15 @@ struct MenuView: View {
                     }
                 }
                 
-                SlideMenuView(slideMenuViewModel: slideMenuViewModel)
+                // Pass the first available cardSet (or selectedCardSet if one is selected)
+                if let cardSet = viewModel.selectedCardSet ?? viewModel.cardSets.first {
+                    SlideMenuView(cardSet: cardSet)
+                }
             }
-
             .foregroundColor(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.accentColor)
+            .background(Color.pantalonePink)
             .ignoresSafeArea(edges: .all)
         }
     }
 }
-
-
-

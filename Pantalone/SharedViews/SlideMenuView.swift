@@ -10,22 +10,24 @@ import GameKit
 import Combine
 
 struct SlideMenuView: View {
-    @StateObject var slideMenuViewModel: SlideMenuViewModel
-    @Environment(\.colorScheme) var colorScheme
+    @StateObject private var slideMenuViewModel: SlideMenuViewModel
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
-    
     let cream = Color("Cream")
+    
+    init(cardSet: CardSet) {
+        _slideMenuViewModel = StateObject(wrappedValue: SlideMenuViewModel(cardSet: cardSet))
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
                 Text("Slide!")
                     .font(customTitle)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(.black)
                 Text("Choose a card to slide.")
                     .bold()
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(.black)
                 
                 ScrollView(.horizontal) {
                     HStack {

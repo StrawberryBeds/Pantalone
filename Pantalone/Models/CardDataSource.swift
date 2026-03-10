@@ -6,8 +6,37 @@
 //
 
 
+struct CardSet: Identifiable, Equatable, Hashable {
+    let id: Int
+    let setName: String
+    let setImage: String
+    let cardImages: [String]
+    let cardNames: [String]
+    let leaderboardIDs: [String]
+    let achievementIDs: [String]
+    
+    // Generate slide-specific leaderboard IDs for each card image
+    var slideLeaderboardIDs: [String] {
+        cardImages.map { imageName in
+            "com.pantalone.slide.\(setName.lowercased()).\(imageName).lb.com"
+        }
+    }
+}
+
 struct CardDataSource {
     static let cardSets: [CardSet] = [
+        CardSet(
+            id: 2,
+            setName: "Birds",
+            setImage: "mallard",
+            cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
+            cardNames: ["Barn Owl", "Blackbird", "Cockerel", "Cormorant", "Goose", "Kingfisher", "Mallard", "Red Kite", "Robin", "Sea Gull"],
+            leaderboardIDs: ["com.pantalone.match.lb.birds"],
+            achievementIDs: ["com.pantalone.match.ac.birds"]
+        )
+    ]
+}
+
 //        CardSet(
 //            id: 1,
 //            setName: "Emojis",
@@ -16,13 +45,4 @@ struct CardDataSource {
 //            leaderboardIDs: ["com.pantalone.match.lb.emojis"],
 //            achievementIDs: ["com.pantalone.match.ac.emojis"]
 //        ),
-        CardSet(
-            id: 2,
-            setName: "Birds",
-            setImage: "mallard",
-            cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
-            leaderboardIDs: ["com.pantalone.match.lb.birds"],
-            achievementIDs: ["com.pantalone.match.ac.birds"]
-        )
-    ]
-}
+
