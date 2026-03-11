@@ -11,7 +11,7 @@ struct SlideGameOverModal: View {
     
     @Environment(\.dismiss) var dismiss // 1. Access dismiss
     @ObservedObject var slideGameViewModel: SlideGameViewModel
-//    @ObservedObject var sharingViewModel: SharingViewModel
+    //    @ObservedObject var sharingViewModel: SharingViewModel
     
     var gameLogic = GameLogic()
     var slideGameLogic = SlideGameLogic()
@@ -19,6 +19,7 @@ struct SlideGameOverModal: View {
     let cream = Color("Cream")
     let pantalonePink = Color("PantalonePink")
 
+    
     
     var body: some View {
         
@@ -34,11 +35,20 @@ struct SlideGameOverModal: View {
                     .bold()
                     .padding()
                 
-//                Image("\(slideGameViewModel.selectedImage)")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 150, height: 150)
-//                    .cornerRadius(16)
+                if let selectedImage = slideGameViewModel.selectedImage {
+                    Image(selectedImage.imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(16)
+                } else {
+                    Image("card_back_bird") // fallback if nil
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(16)
+                        .foregroundColor(.gray)
+                }
                 
                 
                 Text("You completed the \(slideGameViewModel.selectedImage?.cardName ?? "Unknown Card") puzzle in \(slideGameViewModel.moveCount) moves!")
@@ -47,38 +57,17 @@ struct SlideGameOverModal: View {
                     .padding(10)
                 
                 
-                NavigationStack {
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            slideGameViewModel.slideGameOverModalIsPresented = false
-                        }) {
-                            Text("Admire your game!")
-                                .buttonStyle(.borderedProminent)
-                                .foregroundColor(.black)
-                                .frame(width: 132, height: 60)
-                                .background(.pantalonePink)
-                                .cornerRadius(30)
-                                .padding()
-                        }
-                        
-                        NavigationLink(
-                            destination: {
-                                MenuView(gameLogic: gameLogic)
-                            },
-                            label: {
-                                Text("Play a new puzzle!")
-                                    .buttonStyle(.borderedProminent)
-                                    .foregroundColor(.black)
-                                    .frame(width: 132, height: 60)
-                                    .background(.pantalonePink)
-                                    .cornerRadius(30)
-                                    .padding()
-                            }
-                        )
-                        .onTapGesture {
-                            slideGameViewModel.slideGameOverModalIsPresented = false
-                        }
-                    }
+                
+                Button(action: {
+                    slideGameViewModel.slideGameOverModalIsPresented = false
+                }) {
+                    Text("Dismiss")
+                        .buttonStyle(.borderedProminent)
+                        .foregroundColor(.black)
+                        .frame(width: 132, height: 60)
+                        .background(.pantalonePink)
+                        .cornerRadius(30)
+                        .padding()
                 }
             }
         }
