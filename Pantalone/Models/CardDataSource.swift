@@ -13,7 +13,7 @@ struct CardSet: Identifiable, Equatable, Hashable {
     let cardImages: [String]
     let cardNames: [String]
     let leaderboardIDs: [String]
-    let achievementIDs: [String]
+//    let achievementIDs: [String]
     
     // Generate slide-specific leaderboard IDs for each card image
     var slideLeaderboardIDs: [String] {
@@ -31,8 +31,8 @@ struct CardDataSource {
             setImage: "mallard",
             cardImages: ["barn_owl", "blackbird", "cockerel", "cormorant", "goose", "kingfisher", "mallard", "red_kite", "robin", "sea_gull"],
             cardNames: ["Barn Owl", "Blackbird", "Cockerel", "Cormorant", "Goose", "Kingfisher", "Mallard", "Red Kite", "Robin", "Sea Gull"],
-            leaderboardIDs: ["com.pantalone.match.lb.birds"],
-            achievementIDs: ["com.pantalone.match.ac.birds"]
+            leaderboardIDs: ["com.pantalone.match.lb.birds"]
+//            achievementIDs: ["com.pantalone.match.ac.birds"]
         )
     ]
 }
