@@ -1,0 +1,85 @@
+{
+  "meta" : {
+    "version" : "2024-11-15"
+  },
+  "resources" : {
+    "leaderboardImages" : {
+      "com.pantalone.match.lb.birds-en-GB" : [
+        {
+          "localID" : "com.pantalone.match.lb.birds-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.match.lb.birds-en-GB.png"
+        }
+      ]
+    },
+    "leaderboardLocalizations" : {
+      "com.pantalone.match.lb.birds" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "turns",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.match.lb.birds-en-GB",
+          "name" : "Birds"
+        }
+      ],
+      "com.pantalone.slide.birds.barn_owl.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
+          "name" : "Barn Owl"
+        }
+      ]
+    },
+    "leaderboards" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-02-09T23:35:45Z",
+        "referenceName" : "MatchLBBirds",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.match.lb.birds",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "SlideBirdsLBBarnOwl",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.barn_owl.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      }
+    ],
+    "leaderboardSetMemberships" : {
+      "com.pantalone.ls.birds" : [
+        {
+          "leaderboardLocalIDs" : [
+            "com.pantalone.match.lb.birds"
+          ],
+          "localID" : "com.pantalone.ls.birds"
+        }
+      ]
+    },
+    "leaderboardSets" : [
+      {
+        "referenceName" : "birds",
+        "vendorIdentifier" : "com.pantalone.ls.birds"
+      }
+    ]
+  }
+}
