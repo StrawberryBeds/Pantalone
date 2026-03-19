@@ -65,7 +65,15 @@ class SlideGameViewModel: ObservableObject {
     private func checkWinCondition() {
         if game.isSolved() {
             isGameWon = true
-            self.slideGameOverModalIsPresented = true
+            slideGameOverModalIsPresented = true
+
+            if let leaderboardID = selectedImage?.leaderboardID {
+                Task {
+                    await GameCenterManager.shared.submitScore(moveCount, leaderboardIDs: [leaderboardID])
+                }
+            } else {
+                print("SlideGameViewModel - No leaderboard ID found for selected image, score not submitted.")
+            }
         }
     }
     
