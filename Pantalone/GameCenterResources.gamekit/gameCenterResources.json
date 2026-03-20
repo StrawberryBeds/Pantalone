@@ -28,10 +28,10 @@
           "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.cockerel.lb.com-en-GB.png"
         }
       ],
-      "com.pantalone.slide.birds.cormorent.lb.com-en-GB" : [
+      "com.pantalone.slide.birds.cormorant.lb.com-en-GB" : [
         {
-          "localID" : "com.pantalone.slide.birds.cormorent.lb.com-en-GB",
-          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.cormorent.lb.com-en-GB.png"
+          "localID" : "com.pantalone.slide.birds.cormorant.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.cormorant.lb.com-en-GB.png"
         }
       ],
       "com.pantalone.slide.birds.goose.lb.com-en-GB" : [
@@ -110,13 +110,13 @@
           "name" : "Cockerel"
         }
       ],
-      "com.pantalone.slide.birds.cormorent.lb.com" : [
+      "com.pantalone.slide.birds.cormorant.lb.com" : [
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "moves",
           "formatterSuffixSingular" : "move",
           "locale" : "en-GB",
-          "localID" : "com.pantalone.slide.birds.cormorent.lb.com-en-GB",
+          "localID" : "com.pantalone.slide.birds.cormorant.lb.com-en-GB",
           "name" : "Cormorant"
         }
       ],
@@ -195,7 +195,7 @@
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
-        "submissionType" : "BEST_SCORE",
+        "submissionType" : "MOST_RECENT_SCORE",
         "vendorIdentifier" : "com.pantalone.match.lb.birds",
         "visibility" : "SHOW_FOR_ALL"
       },
@@ -205,9 +205,6 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "recurrenceDuration" : "PT24H",
-        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2027-03-20T21:00:27Z",
         "referenceName" : "SlideLBBarnOwl",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
@@ -258,30 +255,13 @@
         "defaultFormatter" : "INTEGER",
         "recurrenceDuration" : "PT24H",
         "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2026-03-20T21:00:36Z",
-        "referenceName" : "SlideLBRedKite",
+        "recurrenceStartDate" : "2026-03-20T21:00:49Z",
+        "referenceName" : "SlideLBKingfisher",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
         "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.slide.birds.red_kite.lb.com",
-        "visibility" : "SHOW_FOR_ALL"
-      },
-      {
-        "activityProperties" : {
-
-        },
-        "archived" : false,
-        "defaultFormatter" : "INTEGER",
-        "recurrenceDuration" : "PT24H",
-        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2026-03-20T21:00:05Z",
-        "referenceName" : "SlideLBRobin",
-        "scoreRangeEnd" : null,
-        "scoreRangeStart" : null,
-        "scoreSortType" : "ASC",
-        "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.slide.birds.robin.lb.com",
+        "vendorIdentifier" : "com.pantalone.slide.birds.kingfisher.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       },
       {
@@ -309,13 +289,30 @@
         "defaultFormatter" : "INTEGER",
         "recurrenceDuration" : "PT24H",
         "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2026-03-20T21:00:44Z",
-        "referenceName" : "SlideLBCockerel",
+        "recurrenceStartDate" : "2026-03-20T21:00:05Z",
+        "referenceName" : "SlideLBRobin",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
         "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.slide.birds.cockerel.lb.com",
+        "vendorIdentifier" : "com.pantalone.slide.birds.robin.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:36Z",
+        "referenceName" : "SlideLBRedKite",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.red_kite.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       },
       {
@@ -343,13 +340,13 @@
         "defaultFormatter" : "INTEGER",
         "recurrenceDuration" : "PT24H",
         "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2026-03-20T21:00:54Z",
-        "referenceName" : "SlideLBCormorent",
+        "recurrenceStartDate" : "2026-03-20T21:00:44Z",
+        "referenceName" : "SlideLBCockerel",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
         "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.slide.birds.cormorent.lb.com",
+        "vendorIdentifier" : "com.pantalone.slide.birds.cockerel.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       },
       {
@@ -360,13 +357,13 @@
         "defaultFormatter" : "INTEGER",
         "recurrenceDuration" : "PT24H",
         "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
-        "recurrenceStartDate" : "2026-03-20T21:00:49Z",
-        "referenceName" : "SlideLBKingfisher",
+        "recurrenceStartDate" : "2026-03-20T22:00:39Z",
+        "referenceName" : "SlideLBCormorant",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
-        "scoreSortType" : "ASC",
-        "submissionType" : "MOST_RECENT_SCORE",
-        "vendorIdentifier" : "com.pantalone.slide.birds.kingfisher.lb.com",
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.cormorant.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]
