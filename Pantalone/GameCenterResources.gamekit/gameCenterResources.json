@@ -15,6 +15,60 @@
           "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
           "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.barn_owl.lb.com-en-GB.png"
         }
+      ],
+      "com.pantalone.slide.birds.blackbird.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.blackbird.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.blackbird.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.cockerel.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.cockerel.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.cockerel.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.cormorent.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.cormorent.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.cormorent.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.goose.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.goose.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.goose.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.kingfisher.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.kingfisher.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.kingfisher.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.mallard.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.mallard.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.mallard.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.red_kite.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.red_kite.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.red_kite.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.robin.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.robin.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.robin.lb.com-en-GB.png"
+        }
+      ],
+      "com.pantalone.slide.birds.sea_gull.lb.com-en-GB" : [
+        {
+          "localID" : "com.pantalone.slide.birds.sea_gull.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.sea_gull.lb.com-en-GB.png"
+        }
       ]
     },
     "leaderboardLocalizations" : {
@@ -34,6 +88,96 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
           "name" : "Barn Owl"
+        }
+      ],
+      "com.pantalone.slide.birds.blackbird.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.blackbird.lb.com-en-GB",
+          "name" : "Blackbird"
+        }
+      ],
+      "com.pantalone.slide.birds.cockerel.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.cockerel.lb.com-en-GB",
+          "name" : "Cockerel"
+        }
+      ],
+      "com.pantalone.slide.birds.cormorent.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.cormorent.lb.com-en-GB",
+          "name" : "Cormorant"
+        }
+      ],
+      "com.pantalone.slide.birds.goose.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.goose.lb.com-en-GB",
+          "name" : "Goose"
+        }
+      ],
+      "com.pantalone.slide.birds.kingfisher.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.kingfisher.lb.com-en-GB",
+          "name" : "Kingfisher"
+        }
+      ],
+      "com.pantalone.slide.birds.mallard.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.mallard.lb.com-en-GB",
+          "name" : "Mallard"
+        }
+      ],
+      "com.pantalone.slide.birds.red_kite.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.red_kite.lb.com-en-GB",
+          "name" : "Red Kite"
+        }
+      ],
+      "com.pantalone.slide.birds.robin.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.robin.lb.com-en-GB",
+          "name" : "Robin"
+        }
+      ],
+      "com.pantalone.slide.birds.sea_gull.lb.com" : [
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "moves",
+          "formatterSuffixSingular" : "move",
+          "locale" : "en-GB",
+          "localID" : "com.pantalone.slide.birds.sea_gull.lb.com-en-GB",
+          "name" : "Sea Gull"
         }
       ]
     },
@@ -61,12 +205,168 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2027-03-20T21:00:27Z",
         "referenceName" : "SlideLBBarnOwl",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
         "scoreSortType" : "ASC",
         "submissionType" : "MOST_RECENT_SCORE",
         "vendorIdentifier" : "com.pantalone.slide.birds.barn_owl.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:53Z",
+        "referenceName" : "SlideLBGoose",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.goose.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:32Z",
+        "referenceName" : "SlideLBMallard",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.mallard.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:36Z",
+        "referenceName" : "SlideLBRedKite",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.red_kite.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:05Z",
+        "referenceName" : "SlideLBRobin",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.robin.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:22Z",
+        "referenceName" : "SlideLBBlackbird",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.blackbird.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:44Z",
+        "referenceName" : "SlideLBCockerel",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.cockerel.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:11Z",
+        "referenceName" : "SlideLBSeaGull",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.sea_gull.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:54Z",
+        "referenceName" : "SlideLBCormorent",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.cormorent.lb.com",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "recurrenceDuration" : "PT24H",
+        "recurrenceRule" : "FREQ=DAILY;INTERVAL=1",
+        "recurrenceStartDate" : "2026-03-20T21:00:49Z",
+        "referenceName" : "SlideLBKingfisher",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
+        "vendorIdentifier" : "com.pantalone.slide.birds.kingfisher.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       }
     ]
