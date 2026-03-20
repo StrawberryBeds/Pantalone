@@ -62,22 +62,14 @@ struct CustomLeaderboardView: View {
                             NavigationLink(destination: LeaderboardDetailView(
                                 leaderboardID: leaderboard.id,
                                 leaderboardName: leaderboard.name,
-                                setImage: leaderboard.setImage
+                                cardImage: leaderboard.cardImage
                             )) {
                                 HStack {
-                                    // Display Game Center image or fallback to icon
-                                    if !leaderboard.setImage.isEmpty {
-                                        Image(leaderboard.setImage)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                            .cornerRadius(8)
-                                    } else {
-                                        Image(systemName: "trophy")
-                                            .font(.title2)
-                                            .foregroundColor(.blue)
-                                            .frame(width: 40, height: 40)
-                                    }
+                                    Image(leaderboard.cardImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(8)
                                     
                                     Text(leaderboard.name)
                                         .font(customHeadline)
@@ -95,9 +87,8 @@ struct CustomLeaderboardView: View {
                     }
                 }
             }
-            .background(Color.clear) // Make NavigationStack transparent
-            .scrollContentBackground(.hidden) // iOS 16+: Hide default background for scrollable content
+            .background(Color.clear)
+            .scrollContentBackground(.hidden)
         }
     }
 }
-

@@ -5,7 +5,6 @@
 //  Created by Samuel Wood on 2026-02-04.
 //
 
-
 import SwiftUI
 import GameKit
 import Combine
@@ -26,8 +25,8 @@ class CustomLeaderboardViewModel: ObservableObject {
         loadError = nil
         availableLeaderboards = []
         
-        // Get all unique leaderboard IDs from card sets (static property)
-        let allLeaderboardIDs = cardSets.flatMap { $0.leaderboardIDs }
+        // Get all unique leaderboard IDs from card sets — both Match and Slide
+        let allLeaderboardIDs = cardSets.flatMap { $0.leaderboardIDs + $0.slideLeaderboardIDs }
         let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs))
         
         guard !uniqueLeaderboardIDs.isEmpty else {
@@ -53,22 +52,47 @@ class CustomLeaderboardViewModel: ObservableObject {
                     return
                 }
                 
-                // Map leaderboards to our display model
                 self.availableLeaderboards = leaderboards.map { leaderboard in
-                    let matchingSet = self.cardSets.first { $0.leaderboardIDs.contains(leaderboard.baseLeaderboardID) }
+                    let lbID = leaderboard.baseLeaderboardID
+
+                    // Find the matching card set and whether this is a Slide leaderboard
+                    for cardSet in self.cardSets {
+                        // Check Match leaderboards
+                        if cardSet.leaderboardIDs.contains(lbID) {
+                            return LeaderboardInfo(
+                                id: lbID,
+                                name: leaderboard.title ?? "Leaderboard",
+                                setImage: cardSet.setImage,
+                                cardImage: cardSet.setImage
+                            )
+                        }
+                        // Check Slide leaderboards — look up the specific card image by index
+                        if let index = cardSet.slideLeaderboardIDs.firstIndex(of: lbID) {
+                            return LeaderboardInfo(
+                                id: lbID,
+                                name: leaderboard.title ?? "Leaderboard",
+                                setImage: cardSet.setImage,
+                                cardImage: cardSet.cardImages[index]
+                            )
+                        }
+                    }
+
+                    // Fallback — should not normally be reached
                     return LeaderboardInfo(
-                        id: leaderboard.baseLeaderboardID,
+                        id: lbID,
                         name: leaderboard.title ?? "Leaderboard",
-                        setImage: matchingSet?.setImage ?? "card_back_bird")
+                        setImage: "card_back_bird",
+                        cardImage: "card_back_bird"
+                    )
                 }
-                .sorted { $0.name < $1.name }  // Sort alphabetically
+                .sorted { $0.name < $1.name }
             }
         }
     }
-    
+
     private func iconForLeaderboard(_ name: String) -> String {
         let lowercasedName = name.lowercased()
-        
+
         if lowercasedName.contains("emoji") {
             return "face.smiling"
         } else if lowercasedName.contains("bird") {

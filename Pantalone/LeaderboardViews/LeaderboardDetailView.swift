@@ -11,11 +11,14 @@ import Combine
 
 struct LeaderboardDetailView: View {
     @StateObject var viewModel: LeaderboardDetailViewModel
-    let setImage: String
+    let cardImage: String
     
-    init(leaderboardID: String, leaderboardName: String, setImage: String) {
-        _viewModel = StateObject(wrappedValue: LeaderboardDetailViewModel(leaderboardID: leaderboardID, leaderboardName: leaderboardName, setImage: setImage))
-        self.setImage = setImage
+    init(leaderboardID: String, leaderboardName: String, cardImage: String) {
+        _viewModel = StateObject(wrappedValue: LeaderboardDetailViewModel(
+            leaderboardID: leaderboardID,
+            leaderboardName: leaderboardName
+        ))
+        self.cardImage = cardImage
     }
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
@@ -49,36 +52,30 @@ struct LeaderboardDetailView: View {
                 }
                 .padding()
             } else {
-                if !setImage.isEmpty {
-                        
-                        Image(setImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(16)
-                }
+                Image(cardImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .cornerRadius(16)
                 
-                Text("\(viewModel.leaderboardTitle.isEmpty ? viewModel.leaderboardName : viewModel.leaderboardTitle)")
+                Text(viewModel.leaderboardTitle.isEmpty ? viewModel.leaderboardName : viewModel.leaderboardTitle)
                     .font(customTitle)
                     .padding()
                 
                 List {
                     ForEach(viewModel.leaderboardEntries) { entry in
                         HStack {
-                            // Rank badge
                             Text("#\(entry.rank)")
                                 .font(customHeadline)
                                 .foregroundColor(.secondary)
                                 .frame(width: 50, alignment: .leading)
                             
-                            // Player name
                             Text(entry.playerName)
                                 .lineLimit(1)
                                 .font(customHeadline)
                             
                             Spacer()
                             
-                            // Score
                             Text("\(entry.score)")
                                 .font(customHeadline)
                                 .foregroundColor(.primary)
