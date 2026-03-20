@@ -68,10 +68,10 @@
           "url" : "en-GB\/LeaderboardImage-com.pantalone.match.lb.birds-en-GB.png"
         }
       ],
-      "com.pantalone.match.lb.emojis-en-GB" : [
+      "com.pantalone.slide.birds.barn_owl.lb.com-en-GB" : [
         {
-          "localID" : "com.pantalone.match.lb.emojis-en-GB",
-          "url" : "en-GB\/LeaderboardImage-com.pantalone.match.lb.emojis-en-GB.png"
+          "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
+          "url" : "en-GB\/LeaderboardImage-com.pantalone.slide.birds.barn_owl.lb.com-en-GB.png"
         }
       ]
     },
@@ -80,9 +80,10 @@
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "turns",
+          "formatterSuffixSingular" : "",
           "locale" : "en-GB",
           "localID" : "com.pantalone.match.lb.birds-en-GB",
-          "name" : "Birds"
+          "name" : "Match Birds"
         }
       ],
       "com.pantalone.match.lb.emojis" : [
@@ -99,7 +100,7 @@
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "moves",
-          "formatterSuffixSingular" : "move",
+          "formatterSuffixSingular" : "",
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.birds.barn_owl.lb.com-en-GB",
           "name" : "Barn Owl"
@@ -147,11 +148,11 @@
         },
         "archived" : false,
         "defaultFormatter" : "INTEGER",
-        "referenceName" : "SlideBirdsLBBarnOwl",
+        "referenceName" : "SlideLBBarnOwl",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,
-        "scoreSortType" : "DESC",
-        "submissionType" : "BEST_SCORE",
+        "scoreSortType" : "ASC",
+        "submissionType" : "MOST_RECENT_SCORE",
         "vendorIdentifier" : "com.pantalone.slide.birds.barn_owl.lb.com",
         "visibility" : "SHOW_FOR_ALL"
       }

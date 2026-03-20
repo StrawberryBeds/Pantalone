@@ -47,16 +47,16 @@ class GameCenterManager {
         }
     }
 
-    func reportAchievement(_ identifier: String, percentComplete: Double = 100.0, showsCompletionBanner: Bool = true) {
-        let achievement = GKAchievement(identifier: identifier)
-        achievement.percentComplete = percentComplete
-        achievement.showsCompletionBanner = showsCompletionBanner
-        GKAchievement.report([achievement]) { error in
-            if let error = error {
-                print("GameCenterManager - Error reporting achievement: \(error.localizedDescription)")
-            } else {
-                print("GameCenterManager - Achievement reported successfully!")
-            }
-        }
-    }
+//    func reportAchievement(_ identifier: String, percentComplete: Double = 100.0, showsCompletionBanner: Bool = true) {
+//        let achievement = GKAchievement(identifier: identifier)
+//        achievement.percentComplete = percentComplete
+//        achievement.showsCompletionBanner = showsCompletionBanner
+//        GKAchievement.report([achievement]) { error in
+//            if let error = error {
+//                print("GameCenterManager - Error reporting achievement: \(error.localizedDescription)")
+//            } else {
+//                print("GameCenterManager - Achievement reported successfully!")
+//            }
+//        }
+//    }
 }

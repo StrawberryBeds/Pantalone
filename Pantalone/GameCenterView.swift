@@ -21,7 +21,7 @@ struct GameCenterView: View {
 
     func submitScore() {
         var leaderboardIDs = gameLogic.selectedCardSet?.leaderboardIDs ?? []
-        var achievementIDs = gameLogic.selectedCardSet?.achievementIDs ?? []
+//        var achievementIDs = gameLogic.selectedCardSet?.achievementIDs ?? []
 
         if leaderboardIDs.isEmpty {
             gameLogic.selectedCardSet = CardDataSource.cardSets.first { $0.id == 1 }
@@ -44,17 +44,17 @@ struct GameCenterView: View {
         }
 
         // Report achievement if turns <= 16
-        if gameLogic.turns <= 16, let achievementID = achievementIDs.first {
-            let achievement = GKAchievement(identifier: achievementID)
-            achievement.percentComplete = 100.0
-            achievement.showsCompletionBanner = true
-            GKAchievement.report([achievement]) { error in
-                if let error = error {
-                    print("Error reporting achievement: \(error.localizedDescription)")
-                } else {
-                    print("Achievement reported successfully!")
-                }
-            }
-        }
+//        if gameLogic.turns <= 16, let achievementID = achievementIDs.first {
+//            let achievement = GKAchievement(identifier: achievementID)
+//            achievement.percentComplete = 100.0
+//            achievement.showsCompletionBanner = true
+//            GKAchievement.report([achievement]) { error in
+//                if let error = error {
+//                    print("Error reporting achievement: \(error.localizedDescription)")
+//                } else {
+//                    print("Achievement reported successfully!")
+//                }
+//            }
+//        }
     }
 }

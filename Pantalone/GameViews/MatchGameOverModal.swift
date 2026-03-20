@@ -49,11 +49,15 @@ struct MatchGameOverModal: View {
                         .padding(10)
                         
                     Text("Well done! That's the least turns possible!")
+                        .bold()
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding(10)
                 }
                 
                 else {
                     
-                    Text("Try to match the cards in less than 16 turns to win a trophy.")
+                    Text("Try to match the cards in less than 16 turns.")
                         .bold()
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)

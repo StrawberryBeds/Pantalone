@@ -12,17 +12,15 @@ import Combine
 class LeaderboardDetailViewModel: ObservableObject {
     let leaderboardID: String
     let leaderboardName: String
-    let setImage: String
     
     @Published var leaderboardEntries: [LeaderboardEntry] = []
     @Published var leaderboardTitle: String = ""
     @Published var isLoading = false
     @Published var loadError: String?
     
-    init(leaderboardID: String, leaderboardName: String, setImage: String) {
+    init(leaderboardID: String, leaderboardName: String) {
         self.leaderboardID = leaderboardID
         self.leaderboardName = leaderboardName
-        self.setImage = setImage
     }
     
     func loadLeaderboard() {
@@ -31,7 +29,6 @@ class LeaderboardDetailViewModel: ObservableObject {
         leaderboardEntries = []
         leaderboardTitle = ""
         
-        // Use the non-deprecated method
         GKLeaderboard.loadLeaderboards(IDs: [leaderboardID]) { (leaderboards, error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -49,11 +46,9 @@ class LeaderboardDetailViewModel: ObservableObject {
                 return
             }
             
-            // Capture the leaderboard title
             let title = leaderboard.title ?? self.leaderboardName
             
-            // Load entries for the leaderboard
-            leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (localPlayerEntry, entries, totalPlayerCount, error) in
+            leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (_, entries, _, error) in
                 DispatchQueue.main.async {
                     self.isLoading = false
                     self.leaderboardTitle = title
