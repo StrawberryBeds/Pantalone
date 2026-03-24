@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MatchGameView.swift
 //  Pantalone
 //
 //  Created by Samuel Wood on 2026-01-16.
@@ -10,7 +10,7 @@ import SwiftData
 import GameKit
 import CoreTransferable
 
-struct ContentView: View {
+struct MatchGameView: View {
     
     @ObservedObject var gameLogic: GameLogic
     @ObservedObject var menuViewModel: MenuViewModel
