@@ -6,6 +6,11 @@
 //
 
 
+struct Card: Identifiable, Equatable {
+    let id: Int
+    let image: String
+}
+
 struct CardSet: Identifiable, Equatable, Hashable {
     let id: Int
     let setName: String

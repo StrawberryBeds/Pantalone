@@ -76,9 +76,10 @@
         {
           "formatterOverride" : "INTEGER",
           "formatterSuffix" : "turns",
+          "formatterSuffixSingular" : "",
           "locale" : "en-GB",
           "localID" : "com.pantalone.match.lb.birds-en-GB",
-          "name" : "Match Birds"
+          "name" : "Birds"
         }
       ],
       "com.pantalone.slide.birds.barn_owl.lb.com" : [
