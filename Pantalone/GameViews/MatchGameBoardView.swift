@@ -10,7 +10,7 @@ import SwiftData
 import GameKit
 import CoreTransferable
 
-struct GameBoardView: View {
+struct MatchGameBoardView: View {
     
     @ObservedObject var gameLogic: GameLogic
     @ObservedObject var menuViewModel: MenuViewModel
