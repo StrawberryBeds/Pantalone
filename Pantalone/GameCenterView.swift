@@ -9,7 +9,7 @@ import SwiftUI
 import GameKit
 
 struct GameCenterView: View {
-    var gameLogic: GameLogic
+    var gameLogic: MatchGameLogic
 
     var body: some View {
         if (gameLogic.selectedCardSet?.leaderboardIDs.first) != nil {

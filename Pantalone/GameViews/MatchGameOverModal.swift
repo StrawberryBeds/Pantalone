@@ -12,7 +12,7 @@ struct MatchGameOverModal: View {
     @ObservedObject var menuViewModel: MenuViewModel
 //    @ObservedObject var sharingViewModel: SharingViewModel
     
-    var gameLogic = GameLogic()
+    var gameLogic = MatchGameLogic()
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")
     let pantalonePink = Color("PantalonePink")

@@ -17,9 +17,9 @@ class MenuViewModel: ObservableObject {
     let cardSets = sortedCardSets
     @Published var selectedCardSet: CardSet? = nil
     @Published var navigationSelection: CardSet? = nil
-    let gameLogic: GameLogic
+    let gameLogic: MatchGameLogic
     
-    init(gameLogic: GameLogic) {
+    init(gameLogic: MatchGameLogic) {
         self.gameLogic = gameLogic
     }
     

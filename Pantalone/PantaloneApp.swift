@@ -12,7 +12,7 @@ import GameKit
 @main
 struct PantaloneApp: App {
     
-    @StateObject private var gameLogic = GameLogic()
+    @StateObject private var gameLogic = MatchGameLogic()
     
     var body: some Scene {
         WindowGroup {

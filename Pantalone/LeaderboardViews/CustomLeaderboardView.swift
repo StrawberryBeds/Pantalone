@@ -10,10 +10,10 @@ import GameKit
 import Combine
 
 struct CustomLeaderboardView: View {
-    @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var gameLogic: MatchGameLogic
     @StateObject var viewModel: CustomLeaderboardViewModel
     
-    init(gameLogic: GameLogic) {
+    init(gameLogic: MatchGameLogic) {
         self.gameLogic = gameLogic
         _viewModel = StateObject(wrappedValue: CustomLeaderboardViewModel(cardSets: CardDataSource.cardSets))
     }

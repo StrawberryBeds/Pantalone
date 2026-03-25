@@ -12,7 +12,7 @@ import CoreTransferable
 
 struct MatchGameView: View {
     
-    @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var gameLogic: MatchGameLogic
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     
@@ -34,7 +34,7 @@ struct MatchGameView: View {
                     .font(customTitle)
                     .padding()
                 
-                GameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)
+                MatchGameBoardView(gameLogic: gameLogic, menuViewModel: menuViewModel, selectedCardSet: selectedCardSet)
                     .frame(maxWidth: .infinity)
                 
                 
