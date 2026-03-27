@@ -52,11 +52,18 @@ struct LeaderboardDetailView: View {
                 }
                 .padding()
             } else {
-                Image(cardImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(16)
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color.cream)
+                        .scaledToFit()
+                        .frame(width: 160, height: 160)
+                        .cornerRadius(16)
+                    Image(cardImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(16)
+                }
                 
                 Text(viewModel.leaderboardTitle.isEmpty ? viewModel.leaderboardName : viewModel.leaderboardTitle)
                     .font(customTitle)

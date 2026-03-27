@@ -10,7 +10,7 @@ import Foundation
 import GameKit
 import Combine
 
-class GameLogic: ObservableObject {
+class MatchGameLogic: ObservableObject {
     @Published var cards: [Card] = []
     @Published var flippedIndices: [Int] = []
     @Published var solvedIndices: [Int] = []

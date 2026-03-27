@@ -1,5 +1,5 @@
 //
-//  GameBoardView.swift
+//  MatchGameBoardView.swift
 //  Pantalone
 //
 //  Created by Samuel Wood on 2026-02-09.
@@ -10,9 +10,9 @@ import SwiftData
 import GameKit
 import CoreTransferable
 
-struct GameBoardView: View {
+struct MatchGameBoardView: View {
     
-    @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var gameLogic: MatchGameLogic
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?
     

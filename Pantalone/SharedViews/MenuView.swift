@@ -20,7 +20,7 @@ struct MenuView: View {
         GridItem(.flexible(), spacing: 10),
     ]
     
-    init(gameLogic: GameLogic) {
+    init(gameLogic: MatchGameLogic) {
         _viewModel = StateObject(wrappedValue: MenuViewModel(gameLogic: gameLogic))
     }
     

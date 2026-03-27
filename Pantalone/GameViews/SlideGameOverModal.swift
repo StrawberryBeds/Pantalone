@@ -13,7 +13,7 @@ struct SlideGameOverModal: View {
     @ObservedObject var slideGameViewModel: SlideGameViewModel
     //    @ObservedObject var sharingViewModel: SharingViewModel
     
-    var gameLogic = GameLogic()
+    var gameLogic = MatchGameLogic()
     var slideGameLogic = SlideGameLogic()
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let cream = Color("Cream")

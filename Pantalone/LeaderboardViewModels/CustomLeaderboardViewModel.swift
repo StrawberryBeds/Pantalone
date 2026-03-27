@@ -28,6 +28,7 @@ class CustomLeaderboardViewModel: ObservableObject {
         // Get all unique leaderboard IDs from card sets — both Match and Slide
         let allLeaderboardIDs = cardSets.flatMap { $0.leaderboardIDs + $0.slideLeaderboardIDs }
         let uniqueLeaderboardIDs = Array(Set(allLeaderboardIDs))
+        let gameType = String()
         
         guard !uniqueLeaderboardIDs.isEmpty else {
             DispatchQueue.main.async {
@@ -63,7 +64,8 @@ class CustomLeaderboardViewModel: ObservableObject {
                                 id: lbID,
                                 name: leaderboard.title ?? "Leaderboard",
                                 setImage: cardSet.setImage,
-                                cardImage: cardSet.setImage
+                                cardImage: cardSet.setImage,
+                                gameType: "match"
                             )
                         }
                         // Check Slide leaderboards — look up the specific card image by index
@@ -72,7 +74,8 @@ class CustomLeaderboardViewModel: ObservableObject {
                                 id: lbID,
                                 name: leaderboard.title ?? "Leaderboard",
                                 setImage: cardSet.setImage,
-                                cardImage: cardSet.cardImages[index]
+                                cardImage: cardSet.cardImages[index],
+                                gameType: "slide"
                             )
                         }
                     }
@@ -82,7 +85,8 @@ class CustomLeaderboardViewModel: ObservableObject {
                         id: lbID,
                         name: leaderboard.title ?? "Leaderboard",
                         setImage: "card_back_bird",
-                        cardImage: "card_back_bird"
+                        cardImage: "card_back_bird",
+                        gameType: "Unknown Game Type"
                     )
                 }
                 .sorted { $0.name < $1.name }

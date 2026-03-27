@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @StateObject var gameLogic = GameLogic()
+    @StateObject var gameLogic = MatchGameLogic()
 //    @State private var isPresenting = false
     @State private var selectedCardSet: CardSet?
 

@@ -13,6 +13,7 @@ struct LeaderboardInfo: Identifiable {
     let name: String
     let setImage: String    // Card set representative image (e.g. mallard for Birds)
     let cardImage: String   // Specific card image — same as setImage for Match, card-specific for Slide
+    let gameType: String
 }
 
 struct LeaderboardEntry: Identifiable {

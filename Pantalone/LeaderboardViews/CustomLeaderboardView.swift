@@ -10,16 +10,17 @@ import GameKit
 import Combine
 
 struct CustomLeaderboardView: View {
-    @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var gameLogic: MatchGameLogic
     @StateObject var viewModel: CustomLeaderboardViewModel
     
-    init(gameLogic: GameLogic) {
+    init(gameLogic: MatchGameLogic) {
         self.gameLogic = gameLogic
         _viewModel = StateObject(wrappedValue: CustomLeaderboardViewModel(cardSets: CardDataSource.cardSets))
     }
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 24)
+    let cream = Color("Cream")
     
     var body: some View {
         ZStack {
@@ -58,27 +59,35 @@ struct CustomLeaderboardView: View {
                         }
                         .padding()
                     } else {
-                        List(viewModel.availableLeaderboards) { leaderboard in
-                            NavigationLink(destination: LeaderboardDetailView(
-                                leaderboardID: leaderboard.id,
-                                leaderboardName: leaderboard.name,
-                                cardImage: leaderboard.cardImage
-                            )) {
-                                HStack {
-                                    Image(leaderboard.cardImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 40, height: 40)
-                                        .cornerRadius(8)
-                                    
-                                    Text(leaderboard.name)
-                                        .font(customHeadline)
-                                        .foregroundColor(.primary)
+                        let groupedLeaderboards = Dictionary(grouping: viewModel.availableLeaderboards, by: { $0.gameType })
+                        
+                        List {
+                            ForEach(groupedLeaderboards.keys.sorted(), id: \.self) { gameType in
+                                if let leaderboards = groupedLeaderboards[gameType] {
+                                    Section(header: Text(gameType.capitalized)) {
+                                        ForEach(leaderboards) { leaderboard in
+                                            NavigationLink(destination: LeaderboardDetailView(
+                                                leaderboardID: leaderboard.id,
+                                                leaderboardName: leaderboard.name,
+                                                cardImage: leaderboard.cardImage
+                                            )) {
+                                                HStack {
+                                                    Image(leaderboard.cardImage)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 40, height: 40)
+                                                        .cornerRadius(8)
+                                                    Text(leaderboard.name)
+                                                        .font(customHeadline)
+                                                        .foregroundColor(.primary)
+                                                }
+                                                .padding()
+                                            }
+                                        }
+                                    }
                                 }
-                                .padding(.vertical, 8)
                             }
                         }
-                        .listStyle(.insetGrouped)
                     }
                 }
                 .onAppear {
@@ -87,7 +96,7 @@ struct CustomLeaderboardView: View {
                     }
                 }
             }
-            .background(Color.clear)
+            .background(.cream)
             .scrollContentBackground(.hidden)
         }
     }
