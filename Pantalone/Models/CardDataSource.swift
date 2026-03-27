@@ -23,7 +23,7 @@ struct CardSet: Identifiable, Equatable, Hashable {
     // Generate slide-specific leaderboard IDs for each card image
     var slideLeaderboardIDs: [String] {
         cardImages.map { imageName in
-            "com.pantalone.slide.\(setName.lowercased()).\(imageName).lb.com"
+            "com.pantalone.slide.lb.\(setName.lowercased()).\(imageName)"
         }
     }
 }
