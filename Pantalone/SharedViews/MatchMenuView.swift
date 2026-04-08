@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MatchMenuView: View {
-    let viewModel: MenuViewModel
+    @ObservedObject var viewModel: MenuViewModel
     let customTitle: Font
     let columns: [GridItem]
 
