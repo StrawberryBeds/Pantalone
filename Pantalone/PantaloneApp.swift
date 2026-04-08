@@ -12,12 +12,12 @@ import GameKit
 @main
 struct PantaloneApp: App {
     
-    @StateObject private var gameLogic = MatchGameLogic()
+    @StateObject private var gameCenterManager = GameCenterManager()
     
     var body: some Scene {
         WindowGroup {
-            MainTabView(gameLogic: gameLogic)
-            .onAppear(perform: gameLogic.authenticateUser)
+            MainTabView()
+            .onAppear(perform: gameCenterManager.authenticateUser)
         }
     }
 }

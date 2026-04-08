@@ -8,32 +8,43 @@
 import Foundation
 import GameKit
 import UIKit
+import Combine
 
-class GameCenterManager {
+class GameCenterManager: ObservableObject {
     static let shared = GameCenterManager()
     
-    private init() {}
+    @Published var isAuthenticated: Bool = false
     
-    var localPlayer: GKLocalPlayer {
-        return GKLocalPlayer.local
-    }
+    init() {}
     
-    func authenticateUser(presentingViewController: UIViewController?) {
-        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
-            if let error = error {
-                print("GameCenterManager - Error authenticating: \(error.localizedDescription)")
-                return
-            }
-            if let gcAuthVC = gcAuthVC, let viewController = presentingViewController {
-                viewController.present(gcAuthVC, animated: true)
-                return
-            } else {
-                print("GameCenterManager - Player authenticated: \(GKLocalPlayer.local.isAuthenticated)")
+        var localPlayer = GKLocalPlayer.local
+    
+        var rootViewController: UIViewController? {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            return windowScene?.windows.first?.rootViewController
+        }
+    
+        func authenticateUser() {
+            GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
+                if let error = error {
+                    print("GameLogic - Error authenticating: \(error.localizedDescription)")
+                    return
+                }
+                if let gcAuthVC = gcAuthVC {
+                    // Present the authentication view controller if needed
+                    self.rootViewController?.present(gcAuthVC, animated: true)
+                    return
+    
+                } else {
+                    print("GameLogic - Player authenticated: \(GKLocalPlayer.local.isAuthenticated)")
+                }
             }
         }
-    }
 
     func submitScore(_ score: Int, leaderboardIDs: [String]) async {
+        if !isAuthenticated {
+            print("GameCenterManager - Warning: trying to submit score while not authenticated.")
+        }
         do {
             try await GKLeaderboard.submitScore(
                 score,
