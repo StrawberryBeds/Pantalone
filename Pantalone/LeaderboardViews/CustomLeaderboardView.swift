@@ -10,13 +10,8 @@ import GameKit
 import Combine
 
 struct CustomLeaderboardView: View {
-    @ObservedObject var gameLogic: MatchGameLogic
-    @StateObject var viewModel: CustomLeaderboardViewModel
-    
-    init(gameLogic: MatchGameLogic) {
-        self.gameLogic = gameLogic
-        _viewModel = StateObject(wrappedValue: CustomLeaderboardViewModel(cardSets: CardDataSource.cardSets))
-    }
+    @EnvironmentObject var gameCenterManager: GameCenterManager
+    @StateObject var viewModel: CustomLeaderboardViewModel = CustomLeaderboardViewModel(cardSets: CardDataSource.cardSets)
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 24)
