@@ -42,6 +42,7 @@ struct MatchGameOverModal: View {
                 Text("You matched all the cards in \(gameLogic.turns) turns!")
                     .bold()
                     .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
                     .padding(10)
                 
                 if gameLogic.turns < 16 {
@@ -86,7 +87,7 @@ struct MatchGameOverModal: View {
                     Button(action: {
                         gameLogic.gameOverModalIsPresented = false
                     }) {
-                        Text("Admire your game!")
+                        Text("Admire your game! ")
                             .buttonStyle(.borderedProminent)
                             .foregroundColor(.black)
                             .frame(width: 132, height: 60)
