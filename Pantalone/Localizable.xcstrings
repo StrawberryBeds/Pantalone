@@ -326,7 +326,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tu as résolu le puzzle en %lld coups."
+            "value" : "Tu as résolu le puzzle en %lld coups !"
           }
         }
       }
@@ -338,7 +338,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tu as réussi à associer toutes les cartes en %lld coups !"
+            "value" : "Tu as réussi à associer toutes les cartes en %lld tours !"
           }
         }
       }
