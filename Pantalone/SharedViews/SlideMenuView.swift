@@ -10,6 +10,7 @@ import GameKit
 import Combine
 
 struct SlideMenuView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var slideMenuViewModel: SlideMenuViewModel
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
@@ -58,7 +59,10 @@ struct SlideMenuView: View {
                             )
                         }
                     }
+                    .padding(.horizontal)
                 }
+                .frame(maxWidth: 700)
+                .frame(maxWidth: .infinity)
             }
         }
     }

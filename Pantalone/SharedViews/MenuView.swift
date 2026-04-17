@@ -10,6 +10,7 @@ import GameKit
 import Combine
 
 struct MenuView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel: MenuViewModel
     
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
@@ -27,7 +28,7 @@ struct MenuView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                MatchMenuView(viewModel: viewModel, customTitle: customTitle, columns: columns)
+                MatchMenuView(viewModel: viewModel, customTitle: customTitle)
                 
                 // Pass the first available cardSet (or selectedCardSet if one is selected)
                 if let cardSet = viewModel.selectedCardSet ?? viewModel.cardSets.first {
