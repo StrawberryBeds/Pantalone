@@ -21,91 +21,74 @@ struct SlideView: View {
     }
     
     var body: some View {
-        GeometryReader { geo in
-            let tileSize = min((geo.size.width - 60) / 3, 160)  // 3 columns, capped at 160
-            ZStack {
-                Color.cream
-                    .ignoresSafeArea()
-                VStack(spacing: 20) {
-                    // Title
-                    Text("Slide")
-                        .foregroundColor(.black)
-                        .font(customTitle)
-                    // Move counter
-                    Text("Moves: \(viewModel.moveCount)")
-                        .foregroundColor(.black)
-                        .font(customHeadline)
-                    
-                    // Game board
-                    VStack(spacing: 4) {
-                        ForEach(0..<4) { row in
-                            HStack(spacing: 4) {
-                                ForEach(0..<3) { col in
-                                    TileViewWithTap(
-                                        row: row,
-                                        col: col,
-                                        viewModel: viewModel
-                                    )
-                                    .id("\(row)-\(col)")
-                                }
+        ZStack {
+            Color.cream
+                .ignoresSafeArea()
+            VStack(spacing: 20) {
+                // Title
+                Text("Slide")
+                    .foregroundColor(.black)
+                    .font(customTitle)
+                // Move counter
+                Text("Moves: \(viewModel.moveCount)")
+                    .foregroundColor(.black)
+                    .font(customHeadline)
+                
+                // Game board
+                VStack(spacing: 4) {
+                    ForEach(0..<4) { row in
+                        HStack(spacing: 4) {
+                            ForEach(0..<3) { col in
+                                TileViewWithTap(
+                                    row: row,
+                                    col: col,
+                                    viewModel: viewModel
+                                )
+                                .id("\(row)-\(col)")
                             }
                         }
                     }
-                    .id(viewModel.moveCount)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(12)
-                    
-                    // Buttons
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            withAnimation {
-                                viewModel.shuffle()
-                            }
-                        }) {
-                            Text("Shuffle")
-                                .buttonStyle(.borderedProminent)
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 32)
-                                .frame(height: 50)
-                                .background(.pantalonePink)
-                                .cornerRadius(30)
-                        }
-                        
-                        Button(action: {
-                            withAnimation {
-                                viewModel.resetGame()
-                            }
-                        }) {
-                            Text("Reset")
-                                .buttonStyle(.borderedProminent)
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 32)
-                                .frame(height: 50)
-                                .background(.pantalonePink)
-                                .cornerRadius(30)
-                        }
-                    }
-                    
-                    Spacer()
                 }
+                .id(viewModel.moveCount)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(12)
+                
+                // Buttons
+                HStack(spacing: 20) {
+                    Button(action: {
+                        withAnimation {
+                            viewModel.shuffle()
+                        }
+                    }) {
+                        Text("Shuffle")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(.black)
+                            .frame(width: 120, height: 50)
+                            .background(Color.pantalonePink)
+                            .cornerRadius(30)
+                    }
+                    
+                    Button(action: {
+                        withAnimation {
+                            viewModel.resetGame()
+                        }
+                    }) {
+                        Text("Reset")
+                            .buttonStyle(.borderedProminent)
+                            .foregroundColor(.black)
+                            .frame(width: 120, height: 50)
+                            .background(Color.pantalonePink)
+                            .cornerRadius(30)
+                    }
+                }
+                Spacer()
             }
+            .padding()
         }
         .sheet(isPresented: $viewModel.slideGameOverModalIsPresented) {
             SlideGameOverModal(slideGameViewModel: viewModel)
         }
-        
-        
-//        .alert("Congratulations!", isPresented: $viewModel.isGameWon) {
-//            Button("Play Again") {
-//                viewModel.shuffle()
-//            }
-//            Button("Reset") {
-//                viewModel.resetGame()
-//            }
-//        } message: {
-//            Text("You solved the puzzle in \(viewModel.moveCount) moves!")
-//        }
     }
 }
 
