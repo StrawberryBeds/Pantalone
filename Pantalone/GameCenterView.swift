@@ -13,7 +13,7 @@ struct GameCenterView: View {
 
     var body: some View {
         if (gameLogic.selectedCardSet?.leaderboardIDs.first) != nil {
-            CustomLeaderboardView(gameLogic: gameLogic)
+            CustomLeaderboardView()
         } else {
             Text("No leaderboard available.")
         }

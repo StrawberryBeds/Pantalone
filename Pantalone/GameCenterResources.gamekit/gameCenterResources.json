@@ -79,6 +79,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.match.lb.birds-en-GB",
           "name" : "Birds"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "tours",
+          "formatterSuffixSingular" : "tour",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.match.lb.birds-fr-FR",
+          "name" : "Oiseaux"
         }
       ],
       "com.pantalone.slide.lb.birds.barn_owl" : [
@@ -88,6 +96,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.barn_owl-en-GB",
           "name" : "Barn Owl"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.barn_owl-fr-FR",
+          "name" : "Effraie des clochers"
         }
       ],
       "com.pantalone.slide.lb.birds.blackbird" : [
@@ -97,6 +113,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.blackbird-en-GB",
           "name" : "Blackbird"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.blackbird-fr-FR",
+          "name" : "Merle noir"
         }
       ],
       "com.pantalone.slide.lb.birds.cockerel" : [
@@ -106,6 +130,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.cockerel-en-GB",
           "name" : "Cockerel"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.cockerel-fr-FR",
+          "name" : "Coq"
         }
       ],
       "com.pantalone.slide.lb.birds.cormorant" : [
@@ -115,15 +147,32 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.cormorant-en-GB",
           "name" : "Cormorant"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.cormorant-fr-FR",
+          "name" : "Cormoran"
         }
       ],
       "com.pantalone.slide.lb.birds.goose" : [
         {
+          "formatterOverride" : "INTEGER",
           "formatterSuffix" : "moves",
           "formatterSuffixSingular" : "move",
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.goose-en-GB",
-          "name" : "Goose"
+          "name" : "Canada Goose"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.goose-fr-FR",
+          "name" : "Bernache du Canada "
         }
       ],
       "com.pantalone.slide.lb.birds.kingfisher" : [
@@ -134,6 +183,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.kingfisher-en-GB",
           "name" : "Kingfisher"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.kingfisher-fr-FR",
+          "name" : "Martin-pêcheur"
         }
       ],
       "com.pantalone.slide.lb.birds.mallard" : [
@@ -143,6 +200,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.mallard-en-GB",
           "name" : "Mallard"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.mallard-fr-FR",
+          "name" : "Canard colvert"
         }
       ],
       "com.pantalone.slide.lb.birds.red_kite" : [
@@ -152,6 +217,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.red_kite-en-GB",
           "name" : "Red Kite"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.red_kite-fr-FR",
+          "name" : "Milan royal"
         }
       ],
       "com.pantalone.slide.lb.birds.robin" : [
@@ -161,6 +234,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.robin-en-GB",
           "name" : "Robin"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.robin-fr-FR",
+          "name" : "Rouge-gorge"
         }
       ],
       "com.pantalone.slide.lb.birds.sea_gull" : [
@@ -170,6 +251,14 @@
           "locale" : "en-GB",
           "localID" : "com.pantalone.slide.lb.birds.sea_gull-en-GB",
           "name" : "Sea Gull"
+        },
+        {
+          "formatterOverride" : "INTEGER",
+          "formatterSuffix" : "coups",
+          "formatterSuffixSingular" : "coup",
+          "locale" : "fr-FR",
+          "localID" : "com.pantalone.slide.lb.birds.sea_gull-fr-FR",
+          "name" : "Mouette "
         }
       ]
     },

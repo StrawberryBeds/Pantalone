@@ -11,7 +11,7 @@ import GameKit
 import CoreTransferable
 
 struct MatchGameView: View {
-    
+    @Environment(\.horizontalSizeClass) var sizeClass
     @ObservedObject var gameLogic: MatchGameLogic
     @ObservedObject var menuViewModel: MenuViewModel
     @State var selectedCardSet: CardSet?

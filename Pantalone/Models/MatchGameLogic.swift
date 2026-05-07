@@ -19,29 +19,29 @@ class MatchGameLogic: ObservableObject {
     
     @Published var gameOverModalIsPresented : Bool = false
     
-    var localPlayer = GKLocalPlayer.local
-    
-    var rootViewController: UIViewController? {
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        return windowScene?.windows.first?.rootViewController
-    }
-    
-    func authenticateUser() {
-        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
-            if let error = error {
-                print("GameLogic - Error authenticating: \(error.localizedDescription)")
-                return
-            }
-            if let gcAuthVC = gcAuthVC {
-                // Present the authentication view controller if needed
-                self.rootViewController?.present(gcAuthVC, animated: true)
-                return
-                
-            } else {
-                print("GameLogic - Player authenticated: \(GKLocalPlayer.local.isAuthenticated)")
-            }
-        }
-    }
+//    var localPlayer = GKLocalPlayer.local
+//    
+//    var rootViewController: UIViewController? {
+//        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//        return windowScene?.windows.first?.rootViewController
+//    }
+//    
+//    func authenticateUser() {
+//        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
+//            if let error = error {
+//                print("GameLogic - Error authenticating: \(error.localizedDescription)")
+//                return
+//            }
+//            if let gcAuthVC = gcAuthVC {
+//                // Present the authentication view controller if needed
+//                self.rootViewController?.present(gcAuthVC, animated: true)
+//                return
+//                
+//            } else {
+//                print("GameLogic - Player authenticated: \(GKLocalPlayer.local.isAuthenticated)")
+//            }
+//        }
+//    }
     
     
     // Ensure selectedCardSet is accessible within the class

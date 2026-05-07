@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SlideView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var viewModel: SlideGameViewModel
-//    @StateObject private var slideMenuViewModel: SlideMenuViewModel
-    
     let customTitle = Font.custom("FrederickatheGreat-Regular", size: 36)
     let customHeadline = Font.custom("FrederickatheGreat-Regular", size: 28)
     
@@ -30,7 +29,6 @@ struct SlideView: View {
                 Text("Slide")
                     .foregroundColor(.black)
                     .font(customTitle)
-                
                 // Move counter
                 Text("Moves: \(viewModel.moveCount)")
                     .foregroundColor(.black)
@@ -67,7 +65,7 @@ struct SlideView: View {
                             .buttonStyle(.borderedProminent)
                             .foregroundColor(.black)
                             .frame(width: 120, height: 50)
-                            .background(.pantalonePink)
+                            .background(Color.pantalonePink)
                             .cornerRadius(30)
                     }
                     
@@ -80,29 +78,17 @@ struct SlideView: View {
                             .buttonStyle(.borderedProminent)
                             .foregroundColor(.black)
                             .frame(width: 120, height: 50)
-                            .background(.pantalonePink)
+                            .background(Color.pantalonePink)
                             .cornerRadius(30)
                     }
                 }
-                
                 Spacer()
             }
+            .padding()
         }
         .sheet(isPresented: $viewModel.slideGameOverModalIsPresented) {
             SlideGameOverModal(slideGameViewModel: viewModel)
         }
-        
-        
-//        .alert("Congratulations!", isPresented: $viewModel.isGameWon) {
-//            Button("Play Again") {
-//                viewModel.shuffle()
-//            }
-//            Button("Reset") {
-//                viewModel.resetGame()
-//            }
-//        } message: {
-//            Text("You solved the puzzle in \(viewModel.moveCount) moves!")
-//        }
     }
 }
 

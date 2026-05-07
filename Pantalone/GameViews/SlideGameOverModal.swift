@@ -51,7 +51,7 @@ struct SlideGameOverModal: View {
                 }
                 
                 
-                Text("You completed the \(slideGameViewModel.selectedImage?.cardName ?? "Unknown Card") in \(slideGameViewModel.moveCount) moves!")
+                Text("You completed the puzzle in \(slideGameViewModel.moveCount) moves!")
                     .bold()
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
