@@ -69,6 +69,17 @@ struct LeaderboardDetailView: View {
                     .font(customTitle)
                     .padding()
                 
+                Picker("Leaderboard Scope", selection: $viewModel.playerScope) {
+                    ForEach(LeaderboardDetailViewModel.Scope.allCases) { scope in
+                        Text(scope.displayName).tag(scope)
+                    }
+                }
+                .padding(.horizontal)
+                .pickerStyle(.segmented)
+                .onChange(of: viewModel.playerScope) { newScope in
+                    viewModel.setPlayerScope(newScope)
+                }
+                
                 List {
                     ForEach(viewModel.leaderboardEntries) { entry in
                         HStack {
@@ -101,3 +112,4 @@ struct LeaderboardDetailView: View {
         }
     }
 }
+

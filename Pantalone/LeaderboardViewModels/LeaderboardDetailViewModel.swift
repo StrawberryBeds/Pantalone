@@ -10,6 +10,25 @@ import GameKit
 import Combine
 
 class LeaderboardDetailViewModel: ObservableObject {
+    enum Scope: CaseIterable, Identifiable {
+        case global
+        case friends
+        
+        var id: Self { self }
+        var displayName: String {
+            switch self {
+            case .global: return "Global"
+            case .friends: return "Friends"
+            }
+        }
+        var gkScope: GKLeaderboard.PlayerScope {
+            switch self {
+            case .global: return .global
+            case .friends: return .friendsOnly
+            }
+        }
+    }
+    
     let leaderboardID: String
     let leaderboardName: String
     
@@ -17,17 +36,23 @@ class LeaderboardDetailViewModel: ObservableObject {
     @Published var leaderboardTitle: String = ""
     @Published var isLoading = false
     @Published var loadError: String?
+    @Published var playerScope: Scope
     
-    init(leaderboardID: String, leaderboardName: String) {
+    init(leaderboardID: String, leaderboardName: String, initialScope: Scope = .global) {
         self.leaderboardID = leaderboardID
         self.leaderboardName = leaderboardName
+        self.playerScope = initialScope
     }
     
-    func loadLeaderboard() {
-        isLoading = true
-        loadError = nil
-        leaderboardEntries = []
-        leaderboardTitle = ""
+    func loadLeaderboard(scope: Scope? = nil) {
+        let scopeToUse = scope ?? playerScope
+        
+        DispatchQueue.main.async {
+            self.isLoading = true
+            self.loadError = nil
+            self.leaderboardEntries = []
+            self.leaderboardTitle = ""
+        }
         
         GKLeaderboard.loadLeaderboards(IDs: [leaderboardID]) { (leaderboards, error) in
             if let error = error {
@@ -48,7 +73,7 @@ class LeaderboardDetailViewModel: ObservableObject {
             
             let title = leaderboard.title ?? self.leaderboardName
             
-            leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (_, entries, _, error) in
+            leaderboard.loadEntries(for: scopeToUse.gkScope, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { (_, entries, _, error) in
                 DispatchQueue.main.async {
                     self.isLoading = false
                     self.leaderboardTitle = title
@@ -70,5 +95,10 @@ class LeaderboardDetailViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func setPlayerScope(_ scope: Scope) {
+        playerScope = scope
+        loadLeaderboard(scope: scope)
     }
 }
